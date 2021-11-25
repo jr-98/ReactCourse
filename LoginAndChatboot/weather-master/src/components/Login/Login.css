@@ -2,3 +2,15 @@
     display: flex;
     float: right;
 }
+
+.box {
+    height: 100;
+    display: flex;
+    border: 1px ;
+    padding: 8;
+}
+
+.topLeftBox {
+    justify-content: center;
+    align-items: flex-end;
+}

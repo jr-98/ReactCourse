@@ -1,9 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import AppFrame from './../components/AppFrame';
-import Login from './../components/Login';
-import Logout from './../components/Logout';
-import Paper from '@material-ui/core/Paper';
+import Profile from '../components/Profile';
 
 import { Grid } from '@material-ui/core'
 
@@ -18,7 +16,7 @@ const MainPage = props => {
                 justify="center"
                 className="fullScreen">
                 <div>
-                    <Login />
+                    <Profile />
                 </div>
             </Grid>
         </AppFrame>
@@ -28,7 +26,6 @@ const MainPage = props => {
         //history.puas() nos permite comabiar las urls mediante cod
         history.push('/city')
     }
-
 }
 
 export default MainPage

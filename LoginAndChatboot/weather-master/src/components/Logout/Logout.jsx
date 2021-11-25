@@ -1,17 +1,23 @@
 import React from 'react'
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from 'reactstrap';
+import { Button, Box } from '@material-ui/core';
 // Import Hiiks form Auth0
 import { useAuth0 } from '@auth0/auth0-react';
-
 
 const Logout = () => {
     const { logout } = useAuth0();
     return (
-        <Button
-            className="btn btn-primary btn-lg btnLogin"
-            color='danger'
-            onClick={() => logout({ returnTo: window.location.origin })}>Logout</Button>
+        <Box component="span"
+            m={1} //margin
+            className='box topLeftBox'>
+            <Button
+                size="large"
+                variant="contained"
+                color="secondary"
+                onClick={() => logout({ returnTo: window.location.origin })}>
+                Logout
+            </Button>
+        </Box>
+
     )
 }
 export default Logout;
