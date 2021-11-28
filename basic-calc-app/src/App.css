@@ -58,10 +58,16 @@ button:hover {
     box-sizing: border-box;
 }
 
-.functions button,
 .math-operations button {
     display: inline-block;
-    width: 8    0px;
+    width: 80px;
+    height: 80px;
+    color: #d63c6b
+}
+
+.functions button {
+    display: inline-block;
+    width: 120px;
     height: 80px;
     color: #d63c6b
 }
