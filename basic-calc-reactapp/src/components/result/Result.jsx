@@ -8,8 +8,7 @@ const Result = ({ value }) => (
     </div>
 )
 Result.propTypes = {
-    value: PropTypes.number.isRequired
-
+    value: PropTypes.string.isRequired
 }
 
 Result.defaultProps = {
