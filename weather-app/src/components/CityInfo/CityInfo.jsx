@@ -13,7 +13,7 @@ const CityInfo = ({ city, country }) => {
 
 CityInfo.propTypes = {
     city: PropTypes.string.isRequired,
-    country: PropTypes.string.isRequired
+    country: PropTypes.string.isRequired,
 }
 
 export default CityInfo
