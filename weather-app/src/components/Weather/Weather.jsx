@@ -49,7 +49,7 @@ const Weater = ({ temperature, state }) => {
 
 Weater.propTypes = {
     temperature: PropTypes.number.isRequired,
-    state: PropTypes.oneOf(validValues)
+    state: PropTypes.oneOf(validValues).isRequired,
 }
 
 export default Weater
