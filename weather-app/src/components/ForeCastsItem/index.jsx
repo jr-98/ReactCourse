@@ -1,1 +1,1 @@
-export { default } from './ForeCastsItem'
+export { default } from './ForecastItem'

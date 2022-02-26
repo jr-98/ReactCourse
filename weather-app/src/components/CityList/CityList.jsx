@@ -5,7 +5,6 @@ import CityInfo from './../CityInfo';
 import Weather from './../Weather';
 
 //REnderCityAndCOuntry sera una funcion que retorne otra funcion
-
 const renderCityAndCountry = eventOnClickCity => cityAndCountry => {
     const { city, country } = cityAndCountry
     return (
@@ -27,7 +26,6 @@ const renderCityAndCountry = eventOnClickCity => cityAndCountry => {
     );
 }
 //Recibe vomo entrada un array
-
 const CityList = ({ cities, onClickCity }) => {
     return (
         <ul>
@@ -39,6 +37,10 @@ const CityList = ({ cities, onClickCity }) => {
 }
 
 CityList.propTypes = {
+    cities: PropTypes.shape({
+        city: PropTypes.string.isRequired,
+        country: PropTypes.string.isRequired,
+    }),
     onClickCity: PropTypes.func.isRequired,
 
 }
