@@ -1,16 +1,15 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { Button, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
+import AppFrame from '../components/AppFrame';
 
 const WelcomePage = () => {
-    const history = useHistory()
-    const onClickHandle = () => {
-        history.push('/main')
-    }
     return (
-        <div><Typography variant='h2'>Welcome Page</Typography>
-            <Button onClick={onClickHandle}>Ir a main</Button>
-        </div>
+        <AppFrame>
+            <Grid container alignContent='center' justifyContent='center' style={{ paddingTop: "5vh" }}>
+                <Typography variant='h2'>Welcome Page</Typography>
+            </Grid>
+
+        </AppFrame>
     )
 }
 

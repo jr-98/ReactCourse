@@ -1,19 +1,12 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { Button, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+import AppFrame from '../components/AppFrame';
 
 const NoFoundPage = () => {
-    const history = useHistory()
-    const onClickHandle = () => {
-        history.push('/main')
-    }
     return (
-
-        <div>
+        <AppFrame>
             <Typography variant='h2'>Página no enocntrada</Typography>
-            <Button onClick={onClickHandle}>Volver a main</Button>
-        </div>
+        </AppFrame>
     )
 }
-
 export default NoFoundPage

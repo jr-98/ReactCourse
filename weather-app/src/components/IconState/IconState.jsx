@@ -6,7 +6,8 @@ import {
     WiRain,
     WiSnow,
     WiRaindrop,
-    WiThunderstorm
+    WiThunderstorm,
+    WiCloudRefresh
 } from 'react-icons/wi'
 import { IconContext } from 'react-icons/lib'
 
@@ -16,7 +17,8 @@ export const validValues = [
     "rain",
     "snow",
     "drizzle",
-    "thunderstorm"
+    "thunderstorm",
+    "reloadIcon",
 ]
 
 const stateByName = {
@@ -25,7 +27,8 @@ const stateByName = {
     rain: WiRain,
     snow: WiSnow,
     drizzle: WiRaindrop,
-    thunderstorm: WiThunderstorm
+    thunderstorm: WiThunderstorm,
+    reloadIcon: WiCloudRefresh,
 }
 
 const IconState = ({ state, value }) => {

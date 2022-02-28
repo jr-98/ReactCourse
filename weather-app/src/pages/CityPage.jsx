@@ -1,17 +1,13 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { Button, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import CityInfo from '../components/CityInfo';
 import Weater from '../components/Weather';
 import WeatherDetails from '../components/WeatherDetails';
 import Forecast from '../components/Forecast'
 import ForecastChart from '../components/ForecastChart'
+import AppFrame from '../components/AppFrame';
 
 const CityPage = () => {
-    const history = useHistory()
-    const onClickHandle = () => {
-        history.push('/main')
-    }
     const city = 'Loja'
     const country = 'Ecuador'
     const temperature = 12
@@ -89,43 +85,40 @@ const CityPage = () => {
         },
     ]
     return (
-        <Grid container
-            justifyContent="space-around"
-            alignItems='center'
-            direction="column"
-
-            spacing={2} >
-            <Grid item
-                justifyItems='right'
-                alignItems="flex-end">
-                <Button onClick={onClickHandle}>Volver al inicio</Button>
-            </Grid>
-            <Grid item xs={12}
-                justifyContent="center"
-                justifyItems="center"
-                alignItems="flex-end">
-                <CityInfo city={city} country={country} />
-            </Grid>
+        <AppFrame>
             <Grid container
-                direction='column'
+                justifyContent="space-around"
                 alignItems='center'
-                justifyContent='center'
-                spacing={1}
-                xs={12}>
-                <Grid item>
-                    <Weater temperature={temperature} state={state} />
+                direction="column"
+                spacing={2}
+                style={{ paddingTop: '5vh' }} >
+                <Grid item xs={12}
+                    justifyContent="center"
+                    justifyItems="center"
+                    alignItems="flex-end">
+                    <CityInfo city={city} country={country} />
                 </Grid>
-                <Grid item>
-                    <WeatherDetails humidity={humidity} wind={wind} />
+                <Grid container
+                    direction='column'
+                    alignItems='center'
+                    justifyContent='center'
+                    spacing={1}
+                    xs={12}>
+                    <Grid item>
+                        <Weater temperature={temperature} state={state} />
+                    </Grid>
+                    <Grid item>
+                        <WeatherDetails humidity={humidity} wind={wind} />
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Grid container style={{ width: 'auto !important' }}>
-                <ForecastChart data={data} />
-            </Grid>
-            <Grid container style={{ width: 'inherit !important' }}>
-                <Forecast forecastItemList={list} />
-            </Grid>
-        </Grid >
+                <Grid container style={{ width: 'auto !important' }}>
+                    <ForecastChart data={data} />
+                </Grid>
+                <Grid container style={{ width: 'inherit !important' }}>
+                    <Forecast forecastItemList={list} />
+                </Grid>
+            </Grid >
+        </AppFrame>
     )
 }
 

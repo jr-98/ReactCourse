@@ -1,4 +1,4 @@
-import { Grid, List, ListItem } from '@material-ui/core';
+import { Grid, List, ListItem} from '@material-ui/core';
 import React from 'react';
 import PropTypes from 'prop-types';
 import CityInfo from './../CityInfo';
@@ -13,15 +13,18 @@ const renderCityAndCountry = eventOnClickCity => cityAndCountry => {
             key={city}
             onClick={eventOnClickCity}>
             <Grid container
-                direction='row'
+                // direction='row'
+                style={{ width: '50vw' }}
                 alignContent='center'
                 alignItems='center'>
                 <Grid item
-                    xs={6}>
+                    md={9}
+                    xs={12}>
                     <CityInfo city={city} country={country} />
                 </Grid>
                 <Grid item
-                    xs={6}>
+                    md={3}
+                    xs={12}>
                     <Weather temperature={12} state='sunny' />
                 </Grid>
             </Grid>
