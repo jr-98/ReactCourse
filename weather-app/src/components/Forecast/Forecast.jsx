@@ -22,9 +22,11 @@ const renderForecastItem = (forecast) => {
 const Forecast = ({ forecastItemList }) => {
     return (
         <Grid container
-            justifyContent='center'
-            alignContent='center'
-            alignItems='center'>
+            justifyContent='space-around'
+            justifyItems='space-around'
+            alignItems='center'
+            xs={12}
+            style={{ flexWrap: "nowrap" }}>
             {forecastItemList.map(forecast => renderForecastItem(forecast))}
         </Grid>
     )

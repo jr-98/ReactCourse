@@ -9,27 +9,26 @@ import {
     CartesianGrid,
     ComposedChart,
     Bar,
+    ResponsiveContainer,
 } from 'recharts';
 const ForecastChart = ({ data }) => {
     return (
-        <div>
-                <ComposedChart
-                    width={900}
-                    height={300}
-                    margin={{ top: 20, bottom: 20, left: 5, right: 5 }}
-                    data={data}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="dayHour" padding={{ left: 30, right: 30 }} />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-
-                    <Line type='monotone' dataKey="max" stroke="#8884d8" strokeWidth={3} />
-                    <Bar dataKey="max" barSize={20} fill="#8884d8" />
-                    <Line type='monotone' dataKey="min" stroke="#82ca9d" strokeWidth={3} />
-                    <Bar dataKey="min" barSize={20} fill="#82ca9d" />
-                </ComposedChart>
-        </div>
+        <ResponsiveContainer width="95%" height={300} >
+            <ComposedChart
+                layout="horizontal"
+                margin={{ top: 20, bottom: 20, left: 5, right: 5 }}
+                data={data}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="dayHour" padding={{ left: 30, right: 30 }} />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type='monotone' dataKey="max" stroke="#8884d8" strokeWidth={3} />
+                <Bar dataKey="max" barSize={20} fill="#8884d8" />
+                <Line type='monotone' dataKey="min" stroke="#82ca9d" strokeWidth={3} />
+                <Bar dataKey="min" barSize={20} fill="#82ca9d" />
+            </ComposedChart>
+        </ResponsiveContainer>
     )
 }
 

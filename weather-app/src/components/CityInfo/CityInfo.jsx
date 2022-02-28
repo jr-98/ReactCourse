@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 
 const CityInfo = ({ city, country }) => {
     return (
-        <>
+        <Grid item display="flex">
             <Typography display='inline' variant='h4'>{city},</Typography>
             <Typography display='inline' variant='h6'>{country}</Typography>
-        </>
+        </Grid>
     )
 }
 

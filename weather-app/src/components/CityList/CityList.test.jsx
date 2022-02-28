@@ -11,7 +11,7 @@ test('City List Renders', async () => {
     //eslint-disable-next-line
     const { findAllByRole } = render(<CityList cities={cities} />)
     //eslint-disable-next-line
-    const cityList = await findAllByRole("listitem")
+    const cityList = await findAllByRole("button")
 
     expect(cityList).toHaveLength(3)
 })
@@ -23,7 +23,7 @@ test("CityList click on item", async () => {
 
     const { findAllByRole } = render(<CityList cities={cities} onClickCity={fnClickOnItem} />)
     //eslint-disable-next-line
-    const items = await findAllByRole("listitem")
+    const items = await findAllByRole("button")
     // especificamos que la funcion que se pasa como parametro de la funcion se ejecute una unica vez
     fireEvent.click(items[0])
     expect(fnClickOnItem).toHaveBeenCalledTimes(1)

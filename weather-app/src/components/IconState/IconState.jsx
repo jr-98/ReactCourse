@@ -28,17 +28,18 @@ const stateByName = {
     thunderstorm: WiThunderstorm
 }
 
-const IconState = ({ state }) => {
+const IconState = ({ state, value }) => {
     const StateByName = stateByName[state]
     return (
-        <IconContext.Provider value={{ size: '4em' }}>
+        <IconContext.Provider value={{ size: value }}>
             <StateByName />
         </IconContext.Provider>
     )
 }
 
 IconState.propTypes = {
-    state: PropTypes.oneOf(validValues).isRequired
+    state: PropTypes.oneOf(validValues).isRequired,
+    value: PropTypes.string.isRequired,
 }
 
 export default IconState

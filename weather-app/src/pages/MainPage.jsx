@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Grid, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import CityList from '../components/CityList'
 const MainPage = () => {
