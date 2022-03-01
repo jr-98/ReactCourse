@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Grid, Typography } from '@material-ui/core';
 import IconState, { validValues } from '../IconState';
 
-const Weater = ({ temperature, state }) => {
+const Weather = ({ temperature, state }) => {
     return (
         <Grid container
             direction='row'
@@ -16,9 +16,9 @@ const Weater = ({ temperature, state }) => {
     )
 }
 
-Weater.propTypes = {
+Weather.propTypes = {
     temperature: PropTypes.number.isRequired,
     state: PropTypes.oneOf(validValues).isRequired,
 }
 
-export default Weater
+export default Weather

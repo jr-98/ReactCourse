@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import CityInfo from '../components/CityInfo';
-import Weater from '../components/Weather';
+import Weather from '../components/Weather';
 import WeatherDetails from '../components/WeatherDetails';
 import Forecast from '../components/Forecast'
 import ForecastChart from '../components/ForecastChart'
@@ -93,21 +93,20 @@ const CityPage = () => {
                 spacing={2}
                 style={{ paddingTop: '5vh' }} >
                 <Grid item xs={12}
-                    justifyContent="center"
-                    justifyItems="center"
-                    alignItems="flex-end">
+                    justifyContent={"center"}
+                    justifyItems={"center"}
+                    alignItems={"flex-end"}>
                     <CityInfo city={city} country={country} />
                 </Grid>
                 <Grid container
                     direction='column'
                     alignItems='center'
                     justifyContent='center'
-                    spacing={1}
-                    xs={12}>
-                    <Grid item>
-                        <Weater temperature={temperature} state={state} />
+                    spacing={1}>
+                    <Grid item xs={12}>
+                        <Weather temperature={temperature} state={state} />
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={12}>
                         <WeatherDetails humidity={humidity} wind={wind} />
                     </Grid>
                 </Grid>

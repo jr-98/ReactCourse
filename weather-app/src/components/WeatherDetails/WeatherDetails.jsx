@@ -6,10 +6,10 @@ const WeatherDetails = ({ humidity, wind }) => {
     return (
         <Grid container direction='row' spacing={1}>
             <Grid item>
-                <Typography variant='h7'>Humedad: {humidity}%</Typography>
+                <Typography variant='h6'>Humedad: {humidity}%</Typography>
             </Grid>
             <Grid item>
-                <Typography variant='h7'>Viento: {wind}Km/h</Typography>
+                <Typography variant='h6'>Viento: {wind}Km/h</Typography>
             </Grid>
         </Grid>
     )

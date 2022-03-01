@@ -14,14 +14,20 @@ import PropTypes from 'prop-types';
 const AppFrame = ({ children }) => {
     return (
         <Grid container
-            justifyContent='center'>
+            display={'flex'}
+            justifyContent={'center'}
+            alignContent={'center'}
+            >
             <AppBar position='static'>
                 <Toolbar variant='dense'>
                     <IconButton color='inherit' aria-label='menu'>
-                        <Link component={LinkRouter} to="/main" color='inherit' aria-label='menu'>
+                        <Grid item>
+   <Link component={LinkRouter} to="/main" color='inherit' aria-label='menu'>
                             <IconState state={'reloadIcon'} value={'3em'}></IconState>
                         </Link>
-                        <Typography variant='h' color={'inherit'}>Weather App</Typography>
+                        </Grid>
+                     
+                        <Typography variant='h5' color={'inherit'}>Weather App</Typography>
                     </IconButton>
                 </Toolbar>
             </AppBar>
