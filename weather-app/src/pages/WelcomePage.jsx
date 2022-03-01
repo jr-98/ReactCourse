@@ -1,25 +1,33 @@
 import React from 'react';
-import { Grid, Typography, Button } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
-import AppFrame from '../components/AppFrame';
+import { Grid, IconButton, Typography, Link } from '@material-ui/core';
+import Welcome from '../components/Welcome'; import Weather from '../components/Weather';
+import IconState from '../components/IconState';
+import { Link as LinkRouter } from 'react-router-dom'
+import '../index.css'
 
 const WelcomePage = () => {
-    const history = useHistory()
-    const onClickHandle = () => {
-        history.push('./main')
-    }
     return (
-        <AppFrame>
-            <Grid container
-                alignContent='center'
-                justifyContent='center'
-                direction='column'
-                style={{ paddingTop: "5vh" }}>
-                <Typography variant='h2'>Welcome Page</Typography>
-                <Button color='inherit' onClick={onClickHandle}>Ver ciudades</Button>
+        <Welcome>
+            <Grid item xs={12}
+                className='highlight'>
+                <Grid item container
+                    justifyContent={'center'}
+                    style={{height:'6em'}}>
+                    <IconButton color='inherit' aria-label='inicio'>
+                        <Grid item>
+                            <Link component={LinkRouter} to="/main" color='inherit' aria-label='inicio'>
+                                <IconState state='sunny' value='4em' />
+                            </Link>
+                        </Grid>
+                    </IconButton>
+                </Grid>
+                <Grid item container
+                    justifyContent='center'
+                    alignItems='center' color='inherit'>
+                    <Typography variant='h4'>Weather App</Typography>
+                </Grid>
             </Grid>
-
-        </AppFrame>
+        </Welcome >
     )
 }
 

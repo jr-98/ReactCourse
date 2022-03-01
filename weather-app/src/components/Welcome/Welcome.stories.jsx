@@ -5,4 +5,10 @@ export default {
     title: 'Welcome',
     component: Welcome
 }
-export const welcomeExample = () => <Welcome children={<Weather temperature={23} state='sunny' />} />
+export const welcomeExample = () => {
+    return (
+        <Welcome>
+            <Weather temperature={23} state='sunny' />
+        </Welcome>
+    )
+}

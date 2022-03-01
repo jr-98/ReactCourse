@@ -2,7 +2,8 @@ import React, { useRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import CLOUDS from 'vanta/dist/vanta.clouds.min'
 import * as THREE from 'three'
-
+import '../../index.css'
+import { Grid } from '@material-ui/core'
 const Welcome = ({ children }) => {
     const myRefDiv = useRef(null)
     const [vanta, setVanta] = useState(0) //INicializa en el valor 0 indicando que el elementio vanta no se ha renderizado
@@ -26,12 +27,16 @@ const Welcome = ({ children }) => {
         //La libereaciona de  recoursos se conoce como saneamiento de componentes
     }, [vanta])
     return (
-        <div ref={myRefDiv}>
-            Component
-        </div>
+        <Grid container
+            ref={myRefDiv}
+            alignItems='center'
+            className='full-scream'
+            display='flex'>
+            {children}
+        </Grid>
+
     )
 }
-
 Welcome.propTypes = {
     children: PropTypes.node
 }
