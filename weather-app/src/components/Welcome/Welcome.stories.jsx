@@ -8,7 +8,7 @@ export default {
 export const welcomeExample = () => {
     return (
         <Welcome>
-            <Weather temperature={23} state='sunny' />
+            <Weather temperature={23} state='Clear' />
         </Welcome>
     )
 }

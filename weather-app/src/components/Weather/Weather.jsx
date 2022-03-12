@@ -10,8 +10,8 @@ const Weather = ({ temperature, state }) => {
             justifyContent='center'
             alignItems='center'
             spacing={1}>
-            <IconState state={state} value={'7em'} />
-            <Typography variant='h2'>{temperature}°C</Typography>
+            <IconState state={state} value={'5em'} />
+            <Typography variant='h4'>{temperature}°C</Typography>
         </Grid>
     )
 }

@@ -16,7 +16,7 @@ const WelcomePage = () => {
                     <IconButton color='inherit' aria-label='inicio'>
                         <Grid item>
                             <Link component={LinkRouter} to="/main" color='inherit' aria-label='inicio'>
-                                <IconState state='sunny' value='4em' />
+                                <IconState state='Clear' value='4em' />
                             </Link>
                         </Grid>
                     </IconButton>

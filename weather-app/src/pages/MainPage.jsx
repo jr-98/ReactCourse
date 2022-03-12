@@ -11,14 +11,13 @@ const MainPage = () => {
         history.push("/city")
     }
     const cities = [
-        { city: "Pekin", country: "China" },
-        { city: "Shangai", country: "China" },
-        { city: "Buenos Aires", country: "Argentina" },
-        { city: "Loja", country: "Ecuador" },
+        { city: "Mexico", country: "Mexico", countryCode: "MX" },
+        { city: "Shangai", country: "China", countryCode: "CN" },
+        { city: "Madrid", country: "España", countryCode: "ES" },
+        { city: "Loja", country: "Ecuador", countryCode: "EC" },
     ]
     return (
         <AppFrame>
-
             <Grid container
                 direction='column'
                 alignContent='center'

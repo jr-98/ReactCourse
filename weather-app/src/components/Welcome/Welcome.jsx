@@ -16,6 +16,7 @@ const Welcome = ({ children }) => {
                 el: myRefDiv.current
             }))
         }
+        //35008ab12172c1849744d7ab7ef37472
         //Es una variable que cambia constantemente, por lo que se debe acturalizar el estado de forma constante
         return () => {
             if (vanta) {

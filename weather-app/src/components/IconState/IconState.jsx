@@ -7,29 +7,35 @@ import {
     WiSnow,
     WiRaindrop,
     WiThunderstorm,
+    WiFog,
+    WiTornado,
     WiCloudRefresh,
     WiLightning
 } from 'react-icons/wi'
 import { IconContext } from 'react-icons/lib'
 
 export const validValues = [
-    "clouds",
-    "sunny",
-    "rain",
-    "snow",
-    "drizzle",
-    "thunderstorm",
+    "Clouds",
+    "Clear",
+    "Rain",
+    "Snow",
+    "Drizzle",
+    "Thunderstorm",
+    "Fog",
+    "Tornado",
     "reloadIcon",
     "lighning",
 ]
 
 const stateByName = {
-    clouds: WiDayCloudy,
-    sunny: WiDaySunny,
-    rain: WiRain,
-    snow: WiSnow,
-    drizzle: WiRaindrop,
-    thunderstorm: WiThunderstorm,
+    Clouds: WiDayCloudy,
+    Clear: WiDaySunny,
+    Rain: WiRain,
+    Snow: WiSnow,
+    Drizzle: WiRaindrop,
+    Thunderstorm: WiThunderstorm,
+    Fog: WiFog,
+    Tornado: WiTornado,
     reloadIcon: WiCloudRefresh,
     lighning: WiLightning
 }

@@ -3,17 +3,18 @@ import React from 'react'
 import CityList from './CityList'
 
 const cities = [
-    { city: "Pekin", country: "China" },
-    { city: "Shangai", country: "China" },
-    { city: "Buenos Aires", country: "Argentina" },
+    { city: "Mexico", country: "Mexico", countryCode: "MX" },
+    { city: "Shangai", country: "China", countryCode: "CN" },
+    { city: "Madrid", country: "España", countryCode: "ES" },
+    { city: "Loja", country: "Ecuador", countryCode: "EC" },
 ]
 test('City List Renders', async () => {
     //eslint-disable-next-line
-    const { findAllByRole } = render(<CityList cities={cities} />)
+    const { findAllByRole } = render(<CityList cities={cities} onClickCity={() => { }} />)
     //eslint-disable-next-line
     const cityList = await findAllByRole("button")
 
-    expect(cityList).toHaveLength(3)
+    expect(cityList).toHaveLength(4)
 })
 
 test("CityList click on item", async () => {
