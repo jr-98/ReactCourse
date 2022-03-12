@@ -3,7 +3,7 @@ import React from 'react';
 import ForeCastsItem from './ForecastItem';
 
 test('ForecastItem render', async () => {
-    const { findByText, findAllByRole } = render(<ForeCastsItem weekDay='Lunes' hour={21} state={'sunny'} temperature={34} />)
+    const { findByText, findAllByRole } = render(<ForeCastsItem weekDay='Lunes' hour={21} state={'Clear'} temperature={34} />)
 
     const dayWeek = 'Lunes'
 

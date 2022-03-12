@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link as LinkRouter } from 'react-router-dom';
-import { Typography, Grid, IconButton, Link } from '@material-ui/core';
+import { Typography, Grid, IconButton, Link } from '@mui/material';
 import IconState from '../components/IconState';
 import NoFound from '../components/NoFound'
 import '../index.css'

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ForeCastsItem from '../ForeCastsItem';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import { validValues } from '../IconState';
 
 const renderForecastItem = (forecast) => {
@@ -23,7 +23,7 @@ const Forecast = ({ forecastItemList }) => {
     return (
         <Grid container
             justifyContent={'space-around'}
-            justifyItems={'space-around'}
+            justify={'space-around'}
             alignItems={'center'}
             style={{ flexWrap: "nowrap" }}>
             {forecastItemList.map(forecast => renderForecastItem(forecast))}

@@ -1,14 +1,14 @@
 import React from 'react'
 import CityList from './CityList'
 import { action } from '@storybook/addon-actions'
-const citiess = [
-    { city: "Pekin", country: "China" },
-    { city: "Shangai", country: "China" },
-    { city: "Buenos Aires", country: "Argentina" },
-    { city: "Loja", country: "Ecuador" },
+const cities = [
+    { city: "Mexico", country: "Mexico", countryCode: "MX" },
+    { city: "Shangai", country: "China", countryCode: "CN" },
+    { city: "Madrid", country: "España", countryCode: "ES" },
+    { city: "Loja", country: "Ecuador", countryCode: "EC" },
 ]
 export default {
     title: 'CityList',
     component: CityList,
 }
-export const CityListExample = () => <CityList cities={citiess} onClickCity={action('Este es un click sobre el componente')} /> 
+export const CityListExample = () => <CityList cities={cities} onClickCity={action('Este es un click sobre el componente')} /> 

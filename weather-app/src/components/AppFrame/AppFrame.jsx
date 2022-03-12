@@ -7,7 +7,7 @@ import {
     IconButton,
     Link,
     Typography
-} from '@material-ui/core';
+} from '@mui/material';
 import IconState from '../IconState';
 import PropTypes from 'prop-types';
 

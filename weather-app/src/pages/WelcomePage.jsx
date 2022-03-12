@@ -1,6 +1,6 @@
 import React from 'react';
-import { Grid, IconButton, Typography, Link } from '@material-ui/core';
-import Welcome from '../components/Welcome'; import Weather from '../components/Weather';
+import { Grid, IconButton, Typography, Link } from '@mui/material';
+import Welcome from '../components/Welcome'; 
 import IconState from '../components/IconState';
 import { Link as LinkRouter } from 'react-router-dom'
 import '../index.css'
@@ -12,11 +12,11 @@ const WelcomePage = () => {
                 className='highlight'>
                 <Grid item container
                     justifyContent={'center'}
-                    style={{height:'6em'}}>
+                    style={{ height: '6em' }}>
                     <IconButton color='inherit' aria-label='inicio'>
                         <Grid item>
                             <Link component={LinkRouter} to="/main" color='inherit' aria-label='inicio'>
-                                <IconState state='sunny' value='4em' />
+                                <IconState state='Clear' value='4em' />
                             </Link>
                         </Grid>
                     </IconButton>

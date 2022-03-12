@@ -9,7 +9,7 @@ export default {
 export const apFrameExample = () => {
     return (
         <Router>
-            <AppFrame children={<Weather temperature={23} state='sunny' />}>
+            <AppFrame children={<Weather temperature={23} state='Clear' />}>
             </AppFrame>
         </Router>
     )
