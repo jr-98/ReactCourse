@@ -5,50 +5,24 @@ class ErrorBoundary extends Component {
     constructor(props) {//pertmite tener propiedades y editarlas
         super(props) //pasa las propiedades al superConstructo de la clase heradad, Copmponetn
         this.state = { //State es la forma de qacceder a l estado que tien el compoente base
-            activo: false
+            hasError: false
         }
     }
-    //Fin useState
-    isActive = () => {
-        // return this.props.activo ? ' Activo' : ' No Activo'
-        return this.state.activo ? ' Activo' : ' No Activo'
-    }
-    onClickHandle = (props) => {
-        //setState
-        // this.state.activo=true //forma incorrecta
-        if (this.state.activo === false) {
-            this.setState({ activo: true })
-        } else {
-            this.setState({ activo: false })
-        }
 
+    // es una fucnion que no tuien un acceso la instancia sino solamente a la clase (
+    //no se pude usar this)
+    static getDerivedStateFromError(error) { //internamente hace un setState con la infon de erorr en caso de existeir
+        return { hasError: true }
     }
-    //Se ejecuta cuando el componente que usa el contructor ha sido invocado
-    componentDidMount() {
-        console.log('El componente se ha montado')
-    }
-    //se ejevuta cuando el componente se actualiza
-    componentDidUpdate(prevProps, prevState) {
-        console.log('Se ha modificado el estado')
-        console.log('Estado anterior', prevState.activo)
-        console.log('Estado actual', this.state.activo);
-    }
-    //Se utiliza cuando se desmonta el componente (momento previo a su desmontaje)
-    componentWillUnmount() {
-        console.log('El componente ha sido desmontado');
+    componentDidCatch(error, errorInfo) {
+        console.log('error', errorInfo)
     }
     render() {
         return (
-            <div>
-                <booton onClick={this.onClickHandle}>{this.state.activo ? 'Desactivar' : 'Activar'}</booton>
-                <h1>
-                    {this.props.saludo}
-                    {
-                        this.isActive()
-                    }
-                </h1>
-            </div>
-
+            this.state.hasError ?
+                (<h1>Hubo un error</h1>)
+                :
+                (this.props.children)
         )
     }
 }
