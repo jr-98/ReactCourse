@@ -9,7 +9,7 @@ const renderForecastItem = (forecast) => {
     //Cuando se tiene una lista es necesario establmecer un identificador unico
     return (
         <Grid
-            container data-te   stid="forecast-item-container"
+            container data-testid="forecast-item-container"
             key={`${weekDay}${hour}`}>
             <ForeCastsItem
                 weekDay={weekDay}

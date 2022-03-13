@@ -56,7 +56,7 @@ const lists = [
 test('Forecast render', async () => {
     const { findAllByTestId } = render(<Forecast forecastItemList={lists} />)
 
-    //eslint-deseable-next-line
+    //eslint-disable-next-line
     const forecastItem = await findAllByTestId('forecast-item-container')
 
     expect(forecastItem).toHaveLength(8)
