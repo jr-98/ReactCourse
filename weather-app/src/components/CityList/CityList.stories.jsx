@@ -3,7 +3,7 @@ import CityList from './CityList'
 import { action } from '@storybook/addon-actions'
 const cities = [
     { city: "Mexico", country: "Mexico", countryCode: "MX" },
-    { city: "Shangai", country: "China", countryCode: "CN" },
+    { city: "Buenos Aires", country: "Argentina", countryCode: "AR" },
     { city: "Madrid", country: "España", countryCode: "ES" },
     { city: "Loja", country: "Ecuador", countryCode: "EC" },
 ]

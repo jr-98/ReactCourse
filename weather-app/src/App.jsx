@@ -15,7 +15,7 @@ const App = () => {
                 <Route path="/main">
                     <MainPage />
                 </Route>
-                <Route path="/city">
+                <Route path="/city/:city/:countryCode">
                     <CityPage />
                 </Route>
                 <Route>

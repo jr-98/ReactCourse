@@ -1,7 +1,8 @@
 import { render } from '@testing-library/react';
 import React from 'react';
 import Forecast from './Forecast';
-
+//Call api from get extendes detaild from some city
+const url=
 //findByTextId nos permite encontrar claves unicas en lso componmentes quue se entan renderizando
 const lists = [
     {

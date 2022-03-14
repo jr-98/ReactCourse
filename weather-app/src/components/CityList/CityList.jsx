@@ -9,12 +9,12 @@ import Weather from './../Weather';
 const getCityCode = (city, countryCode) => `${city}-${countryCode}`
 //REnderCityAndCOuntry sera una funcion que retorne otra funcion
 const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
-    const { city, country } = cityAndCountry
+    const { city, country, countryCode } = cityAndCountry
     return (
         <ListItem
             button
-            key={getCityCode(city)}
-            onClick={eventOnClickCity}>
+            key={getCityCode(city, countryCode)}
+            onClick={() =>  eventOnClickCity(city, countryCode)}>
             <Grid container
                 // direction='row'
                 style={{ width: '50vw' }}

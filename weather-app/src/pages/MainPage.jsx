@@ -6,9 +6,9 @@ import AppFrame from '../components/AppFrame';
 
 const MainPage = () => {
     const history = useHistory()
-    const onClickHandler = () => {
+    const onClickHandler = (city, countryCode) => {
         //nos permite trabajar con la URL y cambiarla (modicfica el historia del navegador)
-        history.push("/city")
+        history.push(`/city/${city}/${countryCode}`)
     }
     const cities = [
         { city: "Mexico", country: "Mexico", countryCode: "MX" },
