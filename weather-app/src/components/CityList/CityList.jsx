@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Grid, List, ListItem, Alert } from '@mui/material';
-import convertUnits from 'convert-units'
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import useCityList from '../../hooks/useCityList';
 import CityInfo from './../CityInfo';
 import Weather from './../Weather';
+import { getCityCode } from '../../utils/Utils';
 
-const getCityCode = (city, countryCode) => `${city}-${countryCode}`
+
 //REnderCityAndCOuntry sera una funcion que retorne otra funcion
 const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
     const { city, country, countryCode } = cityAndCountry
@@ -14,7 +14,7 @@ const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
         <ListItem
             button
             key={getCityCode(city, countryCode)}
-            onClick={() =>  eventOnClickCity(city, countryCode)}>
+            onClick={() => eventOnClickCity(city, countryCode)}>
             <Grid container
                 // direction='row'
                 style={{ width: '50vw' }}
@@ -32,36 +32,10 @@ const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
         </ListItem>
     );
 }
+
 //Recibe como entrada un array
 const CityList = ({ cities, onClickCity }) => {
-    const [allWeather, setAllWeather] = useState([])
-    const [error, setError] = useState()
-    useEffect(() => {
-        const setWeather = async (city, countryCode) => {
-            const url = 'https://api.openweathermap.org/data/2.5/weather?q='
-            const apiKey = '&appid=39580df38198d2bed5ddb16e4ab7c8e6'
-            try {
-                const response = await axios.get(`${url}${city},${countryCode}${apiKey}`)
-                const { data } = response
-                const temperature = Number(convertUnits(data.main.temp).from("K").to("C").toFixed(0))
-                const state = data.weather[0].main
-                const propName = getCityCode(city, countryCode)//eEj;[Ciudad de Mexico]
-                const propValue = { temperature, state } //Ej: temperature:10, state:"Clear"
-                setAllWeather(allWeather => ({ ...allWeather, [propName]: propValue }))
-            } catch (error) {
-                if (error.response !== undefined) {//El server respoonde para se produce un error 
-                    setError('!Ups, al parecer existen problemas con nuestro servicio')
-                } else if (error.request) {//Errores en al que no existe comunicacion entre el hostt y el server
-                    setError('Verifique su conexion a internet')
-                } else {//Errores inesperados e imprevistos
-                    setError('Error imprevisto')
-                }
-            }
-        }
-        cities.forEach(({ city, countryCode }) => {
-            setWeather(city, countryCode)
-        });
-    }, [cities])
+    const { allWeather, error, setError } = useCityList({ cities: cities, getCityCode: getCityCode })
 
     return (
         <>
