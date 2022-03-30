@@ -20,7 +20,7 @@ const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
                 style={{ width: '50vw' }}
                 alignContent='center'
                 alignItems='center'>
-                <Grid item md={9} xs={12}>
+                <Grid item md={9} xs={12} >
                     <CityInfo city={city} country={country} />
                 </Grid>
                 <Grid item md={3} xs={12}>
@@ -35,7 +35,7 @@ const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
 
 //Recibe como entrada un array
 const CityList = ({ cities, onClickCity }) => {
-    const { allWeather, error, setError } = useCityList({ cities: cities, getCityCode: getCityCode })
+    const { allWeather, error, setError } = useCityList(cities)
 
     return (
         <>

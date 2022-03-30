@@ -1,6 +1,5 @@
 import React from 'react';
-import { Grid } from '@mui/material';
-import { useParams } from 'react-router-dom'
+import { Grid, CircularProgress } from '@mui/material';
 import CityInfo from '../components/CityInfo';
 import Weather from '../components/Weather';
 import WeatherDetails from '../components/WeatherDetails';
@@ -8,16 +7,19 @@ import Forecast from '../components/Forecast'
 import ForecastChart from '../components/ForecastChart'
 import AppFrame from '../components/AppFrame';
 import useCitypage from '../hooks/useCitypage';
-
+import useCityList from '../hooks/useCityList';
+import { getCityCode } from '../utils/Utils';
+import { getCountryNameByCountryCode } from '../utils/serviceCities';
 
 const CityPage = () => {
-    const { data, forecastItem } = useCitypage()
-    const { city, countryCode } = useParams()
-    const country = 'Ecuador'
-    const temperature = 12
-    const state = 'Clear'
-    const humidity = 12
-    const wind = 34
+    const { city, countryCode, chartData, forecastItem } = useCitypage()
+    const { allWeather } = useCityList([{ city, countryCode }])
+    const weather = allWeather[getCityCode(city, countryCode)]
+    const country = countryCode && getCountryNameByCountryCode(countryCode)
+    const state = weather && weather.state
+    const temperature = weather && weather.temperature
+    const humidity = weather && weather.humidity
+    const wind = weather && weather.wind
     return (
         <AppFrame>
             <Grid container
@@ -40,13 +42,21 @@ const CityPage = () => {
                     <Grid item xs={12}>
                         <Weather temperature={temperature} state={state} />
                     </Grid>
-                    <Grid item xs={12}>
-                        <WeatherDetails humidity={humidity} wind={wind} />
+                    {
+                        humidity && wind &&
+                        <Grid item xs={12}>
+                            <WeatherDetails humidity={humidity && humidity} wind={wind && wind} />
+                        </Grid>
+                    }
+                    <Grid item>
+                        {
+                            !chartData && !forecastItem && <CircularProgress />
+                        }
                     </Grid>
                 </Grid>
                 <Grid container style={{ width: 'auto !important' }}>
                     {
-                        data && <ForecastChart data={data} />
+                        chartData && <ForecastChart data={chartData} />
                     }
                 </Grid>
                 <Grid container style={{ width: 'inherit !important' }}>

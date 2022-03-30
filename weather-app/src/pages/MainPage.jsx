@@ -3,6 +3,7 @@ import { Grid, Typography, Paper } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import CityList from '../components/CityList';
 import AppFrame from '../components/AppFrame';
+import { getCities } from '../utils/serviceCities';
 
 const MainPage = () => {
     const history = useHistory()
@@ -10,12 +11,6 @@ const MainPage = () => {
         //nos permite trabajar con la URL y cambiarla (modicfica el historia del navegador)
         history.push(`/city/${city}/${countryCode}`)
     }
-    const cities = [
-        { city: "Mexico", country: "Mexico", countryCode: "MX" },
-        { city: "Buenos Aires", country: "Argentina", countryCode: "AR" },
-        { city: "Madrid", country: "España", countryCode: "ES" },
-        { city: "Loja", country: "Ecuador", countryCode: "EC" },
-    ]
     return (
         <AppFrame>
             <Grid container
@@ -29,7 +24,7 @@ const MainPage = () => {
                     <Grid container style={{ paddingTop: '5vh' }}>
                         <Paper elevation={10}>
                             <CityList
-                                cities={cities}
+                                cities={getCities()}
                                 onClickCity={onClickHandler}>
                             </CityList>
                         </Paper>
