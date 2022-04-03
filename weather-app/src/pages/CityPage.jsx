@@ -11,16 +11,10 @@ import useCityList from '../hooks/useCityList';
 import { getCityCode } from '../utils/Utils';
 import { getCountryNameByCountryCode } from '../utils/serviceCities';
 
-// let cities = null
-const CityPage = () => {
+const CityPage = ({ allWeather, onSetAllWeather }) => {
     const { city, countryCode, chartData, forecastItem } = useCitypage()
-    // Solucion parcial
-    // if (!cities || !cities[0] || (cities[0].city !== city || cities[0].countryCode !== countryCode)) {
-    //     cities = [{ city, countryCode }]
-    // }    
-    // const { allWeather } = useCityList(cities)
-    const cities = useMemo(() => ([{ city, countryCode }]), [city, countryCode])
-    const { allWeather } = useCityList(cities)
+    const cities = useMemo(() => ([{ city, countryCode, }]), [city, countryCode])
+    useCityList(cities, onSetAllWeather)
     const weather = allWeather[getCityCode(city, countryCode)]
     const country = countryCode && getCountryNameByCountryCode(countryCode)
     const state = weather && weather.state

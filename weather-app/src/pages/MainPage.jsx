@@ -5,7 +5,7 @@ import CityList from '../components/CityList';
 import AppFrame from '../components/AppFrame';
 import { getCities } from '../utils/serviceCities';
 
-const MainPage = () => {
+const MainPage = ({ allWeather, onSetAllWeather }) => {
     const history = useHistory()
     const onClickHandler = (city, countryCode) => {
         //nos permite trabajar con la URL y cambiarla (modicfica el historia del navegador)
@@ -25,7 +25,9 @@ const MainPage = () => {
                         <Paper elevation={10}>
                             <CityList
                                 cities={getCities()}
-                                onClickCity={onClickHandler}>
+                                onClickCity={onClickHandler}
+                                allWeather={allWeather}
+                                onSetAllWeather={onSetAllWeather}>
                             </CityList>
                         </Paper>
                     </Grid>
