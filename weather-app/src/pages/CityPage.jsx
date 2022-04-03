@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Grid, CircularProgress } from '@mui/material';
 import CityInfo from '../components/CityInfo';
 import Weather from '../components/Weather';
@@ -11,9 +11,16 @@ import useCityList from '../hooks/useCityList';
 import { getCityCode } from '../utils/Utils';
 import { getCountryNameByCountryCode } from '../utils/serviceCities';
 
+// let cities = null
 const CityPage = () => {
     const { city, countryCode, chartData, forecastItem } = useCitypage()
-    const { allWeather } = useCityList([{ city, countryCode }])
+    // Solucion parcial
+    // if (!cities || !cities[0] || (cities[0].city !== city || cities[0].countryCode !== countryCode)) {
+    //     cities = [{ city, countryCode }]
+    // }    
+    // const { allWeather } = useCityList(cities)
+    const cities = useMemo(() => ([{ city, countryCode }]), [city, countryCode])
+    const { allWeather } = useCityList(cities)
     const weather = allWeather[getCityCode(city, countryCode)]
     const country = countryCode && getCountryNameByCountryCode(countryCode)
     const state = weather && weather.state
@@ -21,7 +28,7 @@ const CityPage = () => {
     const humidity = weather && weather.humidity
     const wind = weather && weather.wind
     return (
-        <AppFrame>
+        <AppFrame AppFrame >
             <Grid container
                 justifyContent="space-around"
                 alignItems='center'
@@ -65,7 +72,7 @@ const CityPage = () => {
                     }
                 </Grid>
             </Grid >
-        </AppFrame>
+        </AppFrame >
     )
 }
 
