@@ -2,18 +2,17 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { getCityInfo } from "../utils/Urls";
 import getAllWeather from "../utils/transform/getAllWeather";
+import { getCityCode } from "../utils/Utils";
 
-const useCityList = (cities, onSetAllWeather) => {
-    // const [allWeather, setAllWeather] = useState([])
+const useCityList = (cities, allWeather, onSetAllWeather) => {
     const [error, setError] = useState(null)
     useEffect(() => {
         const setWeather = async (city, countryCode) => {
             const url = getCityInfo({ city, countryCode })
             try {
+                onSetAllWeather({ [getCityCode(city, countryCode)]: {} })
                 const response = await axios.get(url)
                 const allWeatherAux = getAllWeather(response, city, countryCode)
-
-                // setAllWeather(allWeather => ({ ...allWeather, ...allWeatherAux }))
                 onSetAllWeather(allWeatherAux)
             } catch (error) {
                 if (error.response) {//El server respoonde para se produce un error 
@@ -26,9 +25,11 @@ const useCityList = (cities, onSetAllWeather) => {
             }
         }
         cities.forEach(({ city, countryCode }) => {
-            setWeather(city, countryCode)
+            if (!allWeather[getCityCode(city, countryCode)]) {
+                setWeather(city, countryCode) // {} Al recibir un objeto vacio es difirente a undefined por lo que el estado de perticion queda en true y no se realizan peticiones extras al server
+            }
         });
-    }, [cities, onSetAllWeather])
+    }, [cities, onSetAllWeather, allWeather])
     return { error, setError }
 }
 export default useCityList
