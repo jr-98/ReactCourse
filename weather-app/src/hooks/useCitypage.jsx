@@ -1,33 +1,37 @@
-import { useState, useEffect, useDebugValue } from "react";
+import { useEffect, useDebugValue } from "react";
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import 'moment/locale/es';//lenguaje
 import { getWeather } from "../utils/Urls";
 import getChartData from "../utils/transform/getChartData";
 import getForecastItemList from "../utils/transform/getForecastItemList";
+import { getCityCode } from "../utils/Utils";
 
-const useCitypage = () => {
-    const [chartData, setChartData] = useState(null)
-    const [forecastItem, setForecastItem] = useState(null)
+const useCitypage = (onSetChartData, onSetForecastItem, allChartData, allForecastItem) => {
     const { city, countryCode } = useParams()
-    const url = getWeather({ city, countryCode })
     useDebugValue(`UseCityPage ${city}`)
     useEffect(() => {
         const getForecast = async () => {
+            const url = getWeather({ city, countryCode })
+            const cityCode = getCityCode(city, countryCode)
             try {
                 const { data } = await axios.get(url)
                 const dataAux = getChartData(data)
-                setChartData(dataAux)
+                onSetChartData({ [cityCode]: dataAux })
                 const forecastItemAux = getForecastItemList(data)
-                setForecastItem(forecastItemAux)
+                onSetForecastItem({ [cityCode]: forecastItemAux })
             } catch (error) {
                 console.log('Ocurrio un error', error)
             }
         }
-        getForecast()
+        const cityCode = getCityCode(city, countryCode)
+        if (allChartData && allForecastItem && !allChartData[cityCode] && !allForecastItem[cityCode]) {
+            getForecast()
+        }
         //eslint-disable-next-line
-    }, [])
-    return { city, countryCode, chartData, forecastItem }
+    }, [city, countryCode, onSetChartData, onSetForecastItem, allChartData, allForecastItem])
+
+    return { city, countryCode }
 }
 
 
