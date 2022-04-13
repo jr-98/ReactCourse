@@ -7,7 +7,7 @@ import getChartData from "../utils/transform/getChartData";
 import getForecastItemList from "../utils/transform/getForecastItemList";
 import { getCityCode } from "../utils/Utils";
 
-const useCitypage = (onSetChartData, onSetForecastItem, allChartData, allForecastItem) => {
+const useCitypage = (actions, allChartData, allForecastItem) => {
     const { city, countryCode } = useParams()
     useDebugValue(`UseCityPage ${city}`)
     useEffect(() => {
@@ -17,9 +17,11 @@ const useCitypage = (onSetChartData, onSetForecastItem, allChartData, allForecas
             try {
                 const { data } = await axios.get(url)
                 const dataAux = getChartData(data)
-                onSetChartData({ [cityCode]: dataAux })
+                actions({ type: 'SET_CHART_DATA', payload: { [cityCode]: dataAux } })
+                // onSetChartData({ [cityCode]: dataAux })
                 const forecastItemAux = getForecastItemList(data)
-                onSetForecastItem({ [cityCode]: forecastItemAux })
+                // onSetForecastItem({ [cityCode]: forecastItemAux })
+                actions({ type: 'SET_FORECAST_ITEM_LIST', payload: { [cityCode]: forecastItemAux } })
             } catch (error) {
                 console.log('Ocurrio un error', error)
             }
@@ -29,7 +31,7 @@ const useCitypage = (onSetChartData, onSetForecastItem, allChartData, allForecas
             getForecast()
         }
         //eslint-disable-next-line
-    }, [city, countryCode, onSetChartData, onSetForecastItem, allChartData, allForecastItem])
+    }, [city, countryCode, actions, allChartData, allForecastItem])
 
     return { city, countryCode }
 }

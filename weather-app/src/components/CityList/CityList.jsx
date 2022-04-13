@@ -35,9 +35,9 @@ const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
 
 //Recibe como entrada un array
 const CityList = ({ cities, onClickCity, data, actions }) => {
-    const { onSetAllWeather } = actions
+    // const { onSetAllWeather } = actions
     const { allWeather } = data
-    const { error, setError } = useCityList(cities, allWeather, onSetAllWeather)
+    const { error, setError } = useCityList(cities, allWeather, actions)
 
     return (
         <>
