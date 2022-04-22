@@ -1,36 +1,21 @@
 import React from 'react';
-import { Grid, List, ListItem, Alert } from '@mui/material';
+import { Grid, List, Alert } from '@mui/material';
 import PropTypes from 'prop-types';
 import useCityList from '../../hooks/useCityList';
-import CityInfo from './../CityInfo';
-import Weather from './../Weather';
 import { getCityCode } from '../../utils/Utils';
-
-
+import CityListItem from './CityListItem';
+    
 //REnderCityAndCOuntry sera una funcion que retorne otra funcion
 const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
-    const { city, country, countryCode } = cityAndCountry
-    return (
-        <ListItem
-            button
-            key={getCityCode(city, countryCode)}
-            onClick={() => eventOnClickCity(city, countryCode)}>
-            <Grid container
-                // direction='row'
-                style={{ width: '50vw' }}
-                alignContent='center'
-                alignItems='center'>
-                <Grid item md={9} xs={12} >
-                    <CityInfo city={city} country={country} />
-                </Grid>
-                <Grid item md={3} xs={12}>
-                    <Weather
-                        temperature={weather && weather.temperature}
-                        state={weather && weather.state} />
-                </Grid>
-            </Grid>
-        </ListItem>
-    );
+    // const { city, country, countryCode } = cityAndCountry
+    const { city, countryCode } = cityAndCountry
+    return <CityListItem key={getCityCode(city, countryCode)}
+        // Se puede pasar todas las propiedades de un objeto mediante destructuring
+        // Pros con menos codigo (18) se hace hace lo mismo que en (11)
+        // Contras: Puede que el componente invocado no necesite todas las oripuedades del objeto del destructuring
+        {...cityAndCountry}
+        eventOnClickCity={eventOnClickCity}
+        weather={weather} />
 }
 
 //Recibe como entrada un array
@@ -66,4 +51,4 @@ CityList.propTypes = {
 
 }
 
-export default CityList
+export default React.memo(CityList)
