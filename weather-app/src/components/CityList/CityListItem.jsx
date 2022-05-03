@@ -1,22 +1,21 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Grid, ListItem } from '@mui/material'
-import { getCityCode } from '../../utils/Utils'
 import CityInfo from '../CityInfo'
 import Weather from '../Weather'
 
-const CityListItem = React.memo((city, countryCode, country, eventOnClickCity, weather) => {
+const CityListItem = React.memo((city, countryCode) => {
+    const { weather, eventOnClickCity } = city
     return (
         <ListItem
             button
-            onClick={() => eventOnClickCity(city, countryCode)}>
+            onClick={() => eventOnClickCity(city.city, city.countryCode)}>
             <Grid container
                 // direction='row'
                 style={{ width: '50vw' }}
                 alignContent='center'
                 alignItems='center'>
                 <Grid item md={9} xs={12} >
-                    <CityInfo city={city} country={country} />
+                    <CityInfo city={city.city} country={city.county} />
                 </Grid>
                 <Grid item md={3} xs={12}>
                     <Weather

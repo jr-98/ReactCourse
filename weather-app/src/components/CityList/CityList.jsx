@@ -1,10 +1,10 @@
 import React from 'react';
-import { Grid, List, Alert } from '@mui/material';
+import { List, Alert } from '@mui/material';
 import PropTypes from 'prop-types';
 import useCityList from '../../hooks/useCityList';
 import { getCityCode } from '../../utils/Utils';
 import CityListItem from './CityListItem';
-    
+
 //REnderCityAndCOuntry sera una funcion que retorne otra funcion
 const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
     // const { city, country, countryCode } = cityAndCountry
@@ -26,16 +26,16 @@ const CityList = ({ cities, onClickCity, data, actions }) => {
 
     return (
         <>
+
+            {
+                error && <Alert onClose={() => setError(null)} severity='error'>{error}</Alert>
+            }
             <List>
                 {
                     cities.map(cityAndCountry => renderCityAndCountry(onClickCity)(cityAndCountry,
                         allWeather[getCityCode(cityAndCountry.city, cityAndCountry.countryCode)]))
                 }
             </List>
-            {error && <Grid>
-                <Alert severity='error'>{error}</Alert>
-            </Grid>
-            }
         </>
     );
 }
