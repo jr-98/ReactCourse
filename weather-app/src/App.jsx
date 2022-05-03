@@ -43,7 +43,7 @@ const App = () => {
                 </Route>
                 <Route path="/city/:city/:countryCode">
                     <CityPage data={state} actions={dispatch} />
-                </Route>
+``                </Route>
                 <Route>
                     <NoFoundPage />
                 </Route>

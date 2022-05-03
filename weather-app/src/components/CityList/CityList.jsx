@@ -23,7 +23,6 @@ const CityList = ({ cities, onClickCity, data, actions }) => {
     // const { onSetAllWeather } = actions
     const { allWeather } = data
     const { error, setError } = useCityList(cities, allWeather, actions)
-
     return (
         <>
 
@@ -50,5 +49,4 @@ CityList.propTypes = {
     onClickCity: PropTypes.func.isRequired,
 
 }
-
 export default React.memo(CityList)

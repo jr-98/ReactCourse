@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Grid, Typography } from '@mui/material'
 
 const CityInfo = ({ city, country }) => {
-    console.log('city', city, 'COUNTR', country)
     return (
         <Grid item display="flex">
             <Typography display='inline' variant='h4'>{city},</Typography>

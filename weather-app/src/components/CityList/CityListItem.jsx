@@ -3,7 +3,7 @@ import { Grid, ListItem } from '@mui/material'
 import CityInfo from '../CityInfo'
 import Weather from '../Weather'
 
-const CityListItem = React.memo((city, countryCode) => {
+const CityListItem = React.memo((city) => {
     const { weather, eventOnClickCity } = city
     return (
         <ListItem
