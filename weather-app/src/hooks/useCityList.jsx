@@ -16,8 +16,8 @@ const useCityList = (cities, allWeather, actions) => {
                 const response = await axios.get(url)
                 const allWeatherAux = getAllWeather(response, city, countryCode)
                 // onSetAllWeather(allWeatherAux)
-                actions({ type:'SET_ALL_WEATHER', payload:allWeatherAux})
-                
+                actions({ type: 'SET_ALL_WEATHER', payload: allWeatherAux })
+
             } catch (error) {
                 if (error.response) {//El server respoonde para se produce un error 
                     setError('!Ups, al parecer existen problemas con nuestro servicio')
