@@ -15,7 +15,7 @@ const CityListItem = React.memo((city) => {
                 alignContent='center'
                 alignItems='center'>
                 <Grid item md={9} xs={12} >
-                    <CityInfo city={city.city} country={city.county} />
+                    <CityInfo city={city.city} country={city.country} />
                 </Grid>
                 <Grid item md={3} xs={12}>
                     <Weather

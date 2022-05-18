@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link as LinkRouter } from 'react-router-dom';
 import { Typography, Grid, IconButton, Link } from '@mui/material';
 import IconState from '../components/IconState';
 import NoFound from '../components/NoFound'
 import '../index.css'
 const NoFoundPage = () => {
+    const styleOne = useMemo(() => ({ height: '6em' }), [])
     return (
         <NoFound>
             <Grid item xs={12}
                 className='highlightNF'>
                 <Grid item container
                     justifyContent={'center'}
-                    style={{ height: '6em' }}>
+                    style={styleOne}>
                     <IconButton color='inherit' aria-label='inicio'>
                         <Grid item>
                             <Link component={LinkRouter} to="/main" color='inherit' aria-label='inicio'>

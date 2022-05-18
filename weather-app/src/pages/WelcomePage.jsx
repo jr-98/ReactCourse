@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Grid, IconButton, Typography, Link } from '@mui/material';
-import Welcome from '../components/Welcome'; 
+import Welcome from '../components/Welcome';
 import IconState from '../components/IconState';
 import { Link as LinkRouter } from 'react-router-dom'
 import '../index.css'
 
 const WelcomePage = () => {
+    const styleOne = useMemo(() => ({ height: '6em' }), [])
+
     return (
         <Welcome>
             <Grid item xs={12}
                 className='highlight'>
                 <Grid item container
                     justifyContent={'center'}
-                    style={{ height: '6em' }}>
+                    style={styleOne}>
                     <IconButton color='inherit' aria-label='inicio'>
                         <Grid item>
                             <Link component={LinkRouter} to="/main" color='inherit' aria-label='inicio'>
@@ -30,5 +32,4 @@ const WelcomePage = () => {
         </Welcome >
     )
 }
-
 export default WelcomePage

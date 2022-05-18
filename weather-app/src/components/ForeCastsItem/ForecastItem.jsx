@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { Grid, Typography } from '@mui/material'
 import IconState, { validValues } from '../IconState'
 const ForecastItem = ({ weekDay, hour, state, temperature }) => {
+    const iconStateSize = useMemo(() => ('4em'), [])
     return (
         <Grid container
             direction='column'
@@ -16,7 +17,7 @@ const ForecastItem = ({ weekDay, hour, state, temperature }) => {
                 <Typography>{hour}</Typography>
             </Grid>
             <Grid item>
-                <IconState state={state} value='4em' />
+                <IconState state={state} value={iconStateSize} />
             </Grid>
             <Grid item>
                 <Typography>{temperature}°</Typography>

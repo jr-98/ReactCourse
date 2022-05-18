@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
-class ErrorBoundary extends Component {
+class ErrorBoundary extends PureComponent {
     //Creacion de estado sin useState, mediante constructtores
     constructor(props) {//pertmite tener propiedades y editarlas
         super(props) //pasa las propiedades al superConstructo de la clase heradad, Copmponetn

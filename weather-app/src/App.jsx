@@ -1,18 +1,18 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useCallback } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import WelcomePage from './pages/WelcomePage';
 import MainPage from './pages/MainPage';
 import CityPage from './pages/CityPage';
 import NoFoundPage from './pages/NoFoundPage';
-
+//Se creaun una variable externa que no se ve afectada por la renderizacion de los componentes
+const initialValue = {
+    allWeather: {},
+    allChartData: {},
+    allForecastItem: {}
+}
 const App = () => {
-    const initialValue = {
-        allWeather: {},
-        allChartData: {},
-        allForecastItem: {}
-    }
     // action {type:'xxx', payload: xxx}
-    const reducer = (state, action) => {
+    const reducer = useCallback((state, action) => {
         switch (action.type) {
             case 'SET_ALL_WEATHER':
                 const weatherCity = action.payload
@@ -29,7 +29,7 @@ const App = () => {
             default:
                 return state
         }
-    }
+    }, [])
     //Single Source of Truth (punto unico de control) 
     const [state, dispatch] = useReducer(reducer, initialValue)
     return (
@@ -43,7 +43,7 @@ const App = () => {
                 </Route>
                 <Route path="/city/:city/:countryCode">
                     <CityPage data={state} actions={dispatch} />
-``                </Route>
+                    ``                </Route>
                 <Route>
                     <NoFoundPage />
                 </Route>

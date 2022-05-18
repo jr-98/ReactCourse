@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Typography, Skeleton } from '@mui/material';
 import IconState, { validValues } from '../IconState';
 
 const Weather = ({ temperature, state }) => {
+    const iconStateSize = useMemo(() => ('5em'), [])
+    const styleSkeleton = useMemo(() => (80), [])
     return (
         <Grid container
             direction='row'
@@ -12,15 +14,15 @@ const Weather = ({ temperature, state }) => {
             spacing={1}>
             {
                 state ?
-                    <IconState state={state} value={'5em'} />
+                    <IconState state={state} value={iconStateSize} />
                     :
-                    <Skeleton variant="circular" height={80} width={80} />
+                    <Skeleton variant="circular" height={styleSkeleton} width={styleSkeleton} />
             }
             {
                 temperature ?
                     <Typography display='inline' variant='h4'>{temperature}°C</Typography>
                     :
-                    <Skeleton ariant="rectangular" height={80} width={80} />
+                    <Skeleton ariant="rectangular" height={styleSkeleton} width={styleSkeleton} />
             }
         </Grid>
     )

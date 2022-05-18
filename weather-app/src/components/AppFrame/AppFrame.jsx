@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link as LinkRouter } from 'react-router-dom';
 import {
     Grid,
@@ -12,6 +12,7 @@ import IconState from '../IconState';
 import PropTypes from 'prop-types';
 
 const AppFrame = ({ children }) => {
+    const inconContextSize = useMemo(() => ('3em'), [])
     return (
         <Grid container
             display={'flex'}
@@ -23,11 +24,10 @@ const AppFrame = ({ children }) => {
                     <IconButton color='inherit' aria-label='menu'>
                         <Grid item>
                             <Link component={LinkRouter} to="/main" color='inherit' aria-label='menu'>
-                                <IconState state={'reloadIcon'} value={'3em'}></IconState>
+                                <IconState state={'reloadIcon'} value={inconContextSize}></IconState>
                             </Link>
                         </Grid>
-
-                        <Typography variant='h5' color={'inherit'}>Weather App</Typography>
+                        <Typography variant='h4' color={'inherit'}>Weather App</Typography>
                     </IconButton>
                 </Toolbar>
             </AppBar>

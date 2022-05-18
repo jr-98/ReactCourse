@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Grid, Typography, Paper } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import CityList from '../components/CityList';
@@ -11,6 +11,7 @@ const MainPage = ({ data, actions }) => {
         //nos permite trabajar con la URL y cambiarla (modicfica el historia del navegador)
         history.push(`/city/${city}/${countryCode}`)
     }, [history])
+    const paddingContainer = useMemo(() => ({ paddingTop: '5vh' }), [])
     return (
         <AppFrame>
             <Grid container
@@ -21,7 +22,7 @@ const MainPage = ({ data, actions }) => {
                     <Typography variant='h2'>Weather App</Typography>
                 </Grid>
                 <Grid item>
-                    <Grid container style={{ paddingTop: '5vh' }}>
+                    <Grid container style={paddingContainer}>
                         <Paper elevation={10}>
                             <CityList
                                 cities={getCities()}

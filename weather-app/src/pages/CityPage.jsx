@@ -27,6 +27,10 @@ const CityPage = ({ data, actions }) => {
     const temperature = weather && weather.temperature
     const humidity = weather && weather.humidity
     const wind = weather && weather.wind
+    const paddingContainer = useMemo(() => ({ paddingTop: '5vh' }), [])
+    const styleOne = useMemo(() => ({ width: 'auto !important' }), [])
+    const styleTwo = useMemo(() => ({ width: 'inherit !important' }), [])
+
     return (
         <AppFrame AppFrame >
             <Grid container
@@ -34,7 +38,7 @@ const CityPage = ({ data, actions }) => {
                 alignItems='center'
                 direction="column"
                 spacing={2}
-                style={{ paddingTop: '5vh' }} >
+                style={paddingContainer} >
                 <Grid item xs={12}
                     justifyContent={"center"}
                     justifyItems={"center"}
@@ -61,12 +65,12 @@ const CityPage = ({ data, actions }) => {
                         }
                     </Grid>
                 </Grid>
-                <Grid container style={{ width: 'auto !important' }}>
+                <Grid container style={styleOne}>
                     {
                         chartData && <ForecastChart data={chartData} />
                     }
                 </Grid>
-                <Grid container style={{ width: 'inherit !important' }}>
+                <Grid container style={styleTwo}>
                     {
                         forecastItem && <Forecast forecastItemList={forecastItem} />
                     }
