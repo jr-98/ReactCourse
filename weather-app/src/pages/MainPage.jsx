@@ -5,7 +5,7 @@ import CityList from '../components/CityList';
 import AppFrame from '../components/AppFrame';
 import { getCities } from '../utils/serviceCities';
 
-const MainPage = ({ data, actions }) => {
+const MainPage = () => {
     const history = useHistory()
     const onClickHandler = React.useCallback((city, countryCode) => {
         //nos permite trabajar con la URL y cambiarla (modicfica el historia del navegador)
@@ -26,9 +26,7 @@ const MainPage = ({ data, actions }) => {
                         <Paper elevation={10}>
                             <CityList
                                 cities={getCities()}
-                                actions={actions}
-                                onClickCity={onClickHandler}
-                                data={data}>
+                                onClickCity={onClickHandler}>
                             </CityList>
                         </Paper>
                     </Grid>

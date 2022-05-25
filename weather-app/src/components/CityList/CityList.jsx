@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import useCityList from '../../hooks/useCityList';
 import { getCityCode } from '../../utils/Utils';
 import CityListItem from './CityListItem';
-
+import { useWeatherStateContext, useWeatherDispatchContext } from '../../WeatherContext'
 //REnderCityAndCOuntry sera una funcion que retorne otra funcion
 const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
     // const { city, country, countryCode } = cityAndCountry
@@ -19,9 +19,11 @@ const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
 }
 
 //Recibe como entrada un array
-const CityList = ({ cities, onClickCity, data, actions }) => {
+const CityList = ({ cities, onClickCity }) => {
+    const actions = useWeatherDispatchContext()
+    const data = useWeatherStateContext()
     // const { onSetAllWeather } = actions
-    const { allWeather } = data
+    const { allWeather } = data && data
     const { error, setError } = useCityList(cities, allWeather, actions)
     return (
         <>
