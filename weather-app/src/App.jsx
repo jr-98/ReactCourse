@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import WelcomePage from './pages/WelcomePage';
 import MainPage from './pages/MainPage';
 import CityPage from './pages/CityPage';
@@ -12,20 +12,12 @@ const App = () => {
             {/* <WeatherDispatchContext.Provider value={dispatch}>
             <WeatherStateContext.Provider value={state}> */}
             <Router>
-                <Switch>
-                    <Route exact path="/">
-                        <WelcomePage />
-                    </Route>
-                    <Route path="/main">
-                        <MainPage />
-                    </Route>
-                    <Route path="/city/:city/:countryCode">
-                        <CityPage />
-                    </Route>
-                    <Route>
-                        <NoFoundPage />
-                    </Route>
-                </Switch>
+                <Routes>
+                    <Route path="/" element={<WelcomePage />} />
+                    <Route path="/main*" element={<MainPage />} />
+                    <Route path="/city/:city/:countryCode" element={<CityPage />} />
+                    <Route path='*' element={<NoFoundPage />} />
+                </Routes>
             </Router>
             {/* </WeatherStateContext.Provider>
         </WeatherDispatchContext.Provider> */}

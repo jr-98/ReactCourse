@@ -1,16 +1,16 @@
 import React, { useMemo } from 'react';
 import { Grid, Typography, Paper } from '@mui/material';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CityList from '../components/CityList';
 import AppFrame from '../components/AppFrame';
 import { getCities } from '../utils/serviceCities';
 
 const MainPage = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
     const onClickHandler = React.useCallback((city, countryCode) => {
         //nos permite trabajar con la URL y cambiarla (modicfica el historia del navegador)
-        history.push(`/city/${city}/${countryCode}`)
-    }, [history])
+        navigate(`/city/${city}/${countryCode}`)
+    }, [navigate])
     const paddingContainer = useMemo(() => ({ paddingTop: '5vh' }), [])
     return (
         <AppFrame>
