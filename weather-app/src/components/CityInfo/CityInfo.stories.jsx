@@ -8,4 +8,5 @@ export default {
     title: "CityInfo",
     component: CityInfo
 }
-export const CityExample = () => <CityInfo city={city} country={country}></CityInfo>
+export const CityExample = (args) => (<CityInfo {...args}></CityInfo>)
+CityExample.args = { city: city, country: country }

@@ -1,6 +1,6 @@
 import React from 'react';
 import AppFrame from './AppFrame';
-import { BrowserRouter as Router } from 'react-router-dom/cjs/react-router-dom.min';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Weather from '../Weather/Weather';
 export default {
     title: 'App Frame',
