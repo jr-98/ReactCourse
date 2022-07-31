@@ -1,3 +1,2 @@
-# Calculadora React
-Calculadora hecha con react
+# Creacion de CRUD básico usando REACT
 
