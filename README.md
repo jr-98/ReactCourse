@@ -11,3 +11,5 @@ npm install
 ```
 npm start
 ```
+## Previsualización
+![Previsualizacion](/basic-calc-reactapp\Prev.PNG.jpg)
