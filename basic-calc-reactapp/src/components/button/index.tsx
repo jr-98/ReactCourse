@@ -2,8 +2,7 @@ import React, { FC } from 'react'
 import './Button.css';
 //void: se espicifica que la funcion no retorna nada
 export type ButtomClickHandler = (text: string) => void
-
-//?: esta propiedad puede llegar como undefined ademas del tipo asignado, equivalenbte al no required de Proptypes
+//?: Esta propiedad puede llegar como undefined ademas, del tipo asignado, equivale al no required de Proptypes
 type Props = {
     text: string,
     type?: string,
@@ -15,9 +14,5 @@ const Button: FC<Props> = ({ text, type, clickHandler }) => (
         <span>{text}</span>
     </button>
 )
-// Button.propTypes = {
-//     text: PropTypes.string.isRequired,
-//     type: PropTypes.string,
-//     clickHandler: PropTypes.func.isRequired
-// }
+
 export default Button

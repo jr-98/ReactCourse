@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import Button, { ButtomClickHandler } from '../Button'
-// import PropTypes from 'prop-types'
 
 type Props = {
     onClickNumber: ButtomClickHandler
@@ -16,6 +15,7 @@ const renderButtons = (onClickNumber: ButtomClickHandler) => {
             clickHandler={onClickNumber} />
     )
 }
+
 const Numbers: FC<Props> = ({ onClickNumber }) => {
     return (
         <section className="numbers">
@@ -23,7 +23,5 @@ const Numbers: FC<Props> = ({ onClickNumber }) => {
         </section>
     )
 }
-// Numbers.propTypes = {
-//     onClickNumber: PropTypes.func.isRequired
-// }
+
 export default Numbers
