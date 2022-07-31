@@ -30,3 +30,5 @@ y posteriornente:
 ```
 npm start
 ```
+## Previsualización
+![Prev Cald](Prev.jpg)
