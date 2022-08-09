@@ -4,6 +4,7 @@ import { getCityInfo } from "../utils/Urls";
 import getAllWeather from "../utils/transform/getAllWeather";
 import { getCityCode } from "../utils/Utils";
 import { action } from "@storybook/addon-actions";
+import { connect } from "react-redux";
 
 const useCityList = (cities, allWeather, actions) => {
     const [error, setError] = useState(null)
@@ -36,4 +37,10 @@ const useCityList = (cities, allWeather, actions) => {
     }, [cities, actions, allWeather])
     return { error, setError }
 }
-export default useCityList
+const mapDispatchToProps = (dispatch) => {
+    return (
+        
+    )
+
+}
+export default connect(null, mapDispatchToProps)(useCityList)
