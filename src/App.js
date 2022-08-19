@@ -1,13 +1,11 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
-import LocationList from './components/LocationList';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Paper from 'material-ui/Paper';
 import ForecastExtended from './components/ForecastExtended';
-import { setCity } from './actions';
+import LocationListContainer from './containers/LocationListContainer';
 import './App.css';
 
 const cities = [
@@ -24,13 +22,6 @@ class App extends Component {
     this.state = { city: null };
   }
 
-  handleSelectedLocation = city => {
-    this.setState({ city });
-    console.log(`handleSelectedLocation ${city}`);
-    //Establecer la accion al payload de store//Disparador de acciones 
-    this.props.setCity(city)
-  }
-
   render() {
     const { city } = this.state;
     return (
@@ -43,8 +34,7 @@ class App extends Component {
           </Row>
           <Row>
             <Col xs={12} md={6}>
-              <LocationList cities={cities}
-                onSelectedLocation={this.handleSelectedLocation} ></LocationList>
+              <LocationListContainer cities={cities} />
             </Col>
             <Col xs={12} md={6}>
               <Paper zDepth={4}>
@@ -62,11 +52,6 @@ class App extends Component {
     );
   }
 }
-// el mapDispatchToProps como normalmente se concec a esta función, 
+// el mapDispatchToProps como normalmente se conoce a esta función, 
 //nos permite trabajar directanente con las acciones
-const mapDispatchToPropsActions = dispatch => {
-  return ({
-    setCity: value => dispatch(setCity(value))
-  })
-}
-export default connect(null, mapDispatchToPropsActions)(App);
+export default App;
