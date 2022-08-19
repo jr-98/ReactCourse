@@ -6,7 +6,7 @@ export const city = (state = {}, action) => {
     switch (action.type) {
         case SET_CITY:
             /// ... <- Express Operation 
-            return { ...state, city: action.payload }
+            return action.payload
         default:
             return state;
     }
