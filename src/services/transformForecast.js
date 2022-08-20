@@ -4,7 +4,6 @@ import 'moment/locale/es';
 
 const transformForecast = data => (
     data.list.filter(item => (
-        console.log(item, moment.unix(item.dt).hour()),
         moment.unix(item.dt).hour() === 1 ||
         moment.unix(item.dt).hour() === 2 ||
         moment.unix(item.dt).hour() === 4 ||

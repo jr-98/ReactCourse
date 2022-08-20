@@ -1,10 +1,12 @@
 import convert from 'convert-units';
-import { CLOUDY, 
+import {
+    CLOUDY,
     SUN,
     RAIN,
-    SNOW, 
-    THUNDER, 
-    DRIZZLE } from './../constants/weathers';
+    SNOW,
+    THUNDER,
+    DRIZZLE,
+} from './../constants/weathers';
 
 const getTemp = kelvin => {
     return Number(convert(kelvin).from('K').to('C').toFixed(2));
@@ -36,7 +38,7 @@ const transformWeather = weather_data => {
     const temperature = getTemp(temp);
 
     const data = {
-        humidity, 
+        humidity,
         temperature,
         weatherState,
         wind: `${speed} m/s`,

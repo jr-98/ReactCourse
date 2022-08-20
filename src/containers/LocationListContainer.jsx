@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import LocationList from '../components/LocationList';
 import { setSelectedCity, setWeather } from '../actions'
+import { getWeatherCities } from '../reducers'
 class LocationListContainer extends Component {
     componentDidMount() {
-        this.props.setWeather(this.props.cities)
+        this.props.setWeather(this.props.cities);
     }
     handleSelectedLocation = city => {
         //Establecer la accion al payload de store//Disparador de acciones 
@@ -29,5 +30,5 @@ const mapDispatchToPropsActions = dispatch => ({
     setCity: value => dispatch(setSelectedCity(value)),
     setWeather: cities => dispatch(setWeather(cities)),
 })
-
-export default connect(null, mapDispatchToPropsActions)(LocationListContainer)
+const mapStateToProps = state => ({ citiesWeater: getWeatherCities(state) })
+export default connect(mapStateToProps, mapDispatchToPropsActions)(LocationListContainer)
