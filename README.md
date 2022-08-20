@@ -11,5 +11,10 @@ Aplicacion sencilla de React para climas con  la aplicacion de redux basico en e
 ```
 {...state, prop:'Nuevo valor'}
 ```
-
+### Selectores
+* Son eficientes ya que no se ejecutas si ninguno de sus parámetros se modifica.
+* Permiten composición: nuevos selectores pueden tomar como entrada otros selectores.
+* Pueden minimuzar el tamaño del store, ya que permiten generar datos procesado al vuelo, en lufa de guardarlos.
+#### Memoization
+Es una técnica de optimización que permite mejorar la celocidad de ejecución guardando valores que son resultado de cáculos complejor, la unica pega esque utilizan más memoria que lkso calulos normales.
 
