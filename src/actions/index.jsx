@@ -5,15 +5,15 @@ import transformWeather from "../services/transformWeather";
 export const SET_CITY = 'SET_CITY'
 export const SET_FORECAST_DATA = 'SET_FORECAST_DATA'
 export const GET_WEATHER_CITY = 'GET_WEATHER_CITY'
-export const SET_WEATHER_CITY = '0'
-//No se export porque se la utiliza de forma intena L17
-const setCity = payload => ({ type: SET_CITY, payload })
+export const SET_WEATHER_CITY = 'SET_WEATHER_CITY'
+
+const setCity = payload => ({ type: SET_CITY, payload })//No se export porque se la utiliza de forma intena L24
 export const setForecastData = payload => ({ type: SET_FORECAST_DATA, payload })
 
-const getWeatherCity = payload => ({ type: GET_WEATHER_CITY, payload })
-const setWeatherCity = payload => ({ type: SET_WEATHER_CITY, payload })
+const getWeatherCity = payload => ({ type: GET_WEATHER_CITY, payload });
+const setWeatherCity = payload => ({ type: SET_WEATHER_CITY, payload });
 
-const api_key = "f99bbd9e4959b513e9bd0d7f7356b38d";
+const api_key = "39580df38198d2bed5ddb16e4ab7c8e6";
 const url = "http://api.openweathermap.org/data/2.5/forecast";
 const url_weather = "http://api.openweathermap.org/data/2.5/weather";
 

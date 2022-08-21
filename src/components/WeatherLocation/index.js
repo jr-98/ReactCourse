@@ -8,8 +8,10 @@ import './styles.css';
 const WeatherLocation = ({ onWeatherLocationClick, city, data }) => (
     <div className='weatherLocationCont' onClick={onWeatherLocationClick} >
         <Location city={city} />
-        {data ? <WeatherData data={data} /> :
-            <CircularProgress size={60} thickness={7} />}
+        {data ?
+            <WeatherData data={data} /> :
+            <CircularProgress size={60} thickness={7} />
+        }
     </div>
 );
 

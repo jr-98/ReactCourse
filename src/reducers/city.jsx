@@ -5,7 +5,6 @@ export const city = (state = {}, action) => {
 
     switch (action.type) {
         case SET_CITY:
-            /// ... <- Express Operation 
             return action.payload
         default:
             return state;

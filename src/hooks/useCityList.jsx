@@ -3,7 +3,6 @@ import axios from "axios";
 import { getCityInfo } from "../utils/Urls";
 import getAllWeather from "../utils/transform/getAllWeather";
 import { getCityCode } from "../utils/Utils";
-import { action } from "@storybook/addon-actions";
 import { connect } from "react-redux";
 
 const useCityList = (cities, allWeather, actions) => {
@@ -39,8 +38,7 @@ const useCityList = (cities, allWeather, actions) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return (
-        
+      
     )
-
 }
 export default connect(null, mapDispatchToProps)(useCityList)
