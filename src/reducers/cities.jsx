@@ -7,7 +7,7 @@ export const cities = (state = {}, action) => {
         case SET_FORECAST_DATA: {
             //eslint-disable-next-line
             const { city, forecastData } = action.payload;
-            return { ...state, [city]: { ...state[city], forecastData. forecastData: } };
+            return { ...state, [city]: { ...state[city], forecastData, forecastDataDate: new Date() } };
         }
         case GET_WEATHER_CITY: {
             const city = action.payload;
