@@ -11,3 +11,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.app-frame{
+  margin: 5%;
+  padding: 30px;
+  width: calc(80vh);
+}
+.customer-actions{
+  background: #AAA;
+  padding: 10px;
+  margin: 10px;
+}
+.customer-actions button{
+  background:white;
+  min-width: 100px;
+  height: 30px;
+  margin: 5px;
+}
+.app-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 3rem;
+  position: relative;
+  width: auto;
+  height: 400px;
+  background-color: white;
+  border: 1px solid rgba(59, 58,58,0.5);
+  border-radius: 20px;
+  box-shadow: -10px 5px 10px;
+  top: 0;
+  transition: top ease 0.5s;
+}
+.app-header:hover{
+  top: -50px;
+}
