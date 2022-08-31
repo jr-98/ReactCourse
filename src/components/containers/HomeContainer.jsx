@@ -1,33 +1,27 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import AppFrame from '../AppFrame'
+import { useNavigate } from 'react-router-dom'
 import CustomerActions from '../CustomerActions'
 //Componente conectado
-
-class HomeContainer extends Component {
-    handleOnclick = () => {
-        console.log('Hice click en el boton ')
+const HomeContainer = () => {
+    const navigate = useNavigate();
+    const handleOnclick = () => {
+        navigate("/customers");
     }
-    render() {
-        return (
-
-            <AppFrame
-                header='Home'
-                body={
-                    <div style={{ paddingTop: '10px' }}>
-                        Esta es la pantalla inicial
-                        <CustomerActions>
-                            <button onClick={this.handleOnclick}>Listado de clientes</button>
-                            <Link to='/customers'></Link>
-                        </CustomerActions>
-                    </ div>
-                }
-            />
-        )
-    }
+    return (
+        <AppFrame
+            header='Home'
+            body={
+                <div style={{ paddingTop: '10px' }}>
+                    Esta es la pantalla inicial
+                    <CustomerActions>
+                        <button onClick={handleOnclick}>Listado de clientes</button>
+                    </CustomerActions>
+                </ div>
+            }
+        />
+    )
 }
 
-HomeContainer.propTypes = {}
 
 export default HomeContainer

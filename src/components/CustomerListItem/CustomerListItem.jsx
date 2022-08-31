@@ -5,15 +5,15 @@ import PropTypes from 'prop-types'
 const CustomerListItem = ({ name, urlPath, dni, editAction, delAction }) => {
     return (
         <div>
-            <div className="customer-list-item">
+            <div className="customers-list-item">
                 <div className="fields">
-                    <Link to={`${urlPath.urlPath}${dni}`}>{name}</Link>
+                    <Link to={`${urlPath}${dni}`}>{name}</Link>
                 </div>
                 <div className="fields">
-                    <Link to={`${urlPath.urlPath}${dni}/edit`} >{editAction}</Link>
+                    <Link to={`${urlPath}${dni}/edit`} >{editAction}</Link>
                 </div>
                 <div className="fields">
-                    <Link to={`${urlPath.urlPath}${dni}/delete`}>{delAction}</Link>
+                    <Link to={`${urlPath}${dni}/delete`}>{delAction}</Link>
                 </div>
             </div>
         </div>
@@ -21,6 +21,7 @@ const CustomerListItem = ({ name, urlPath, dni, editAction, delAction }) => {
 }
 
 CustomerListItem.propTypes = {
+    dni: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     editAction: PropTypes.string.isRequired,
     delAction: PropTypes.string.isRequired,

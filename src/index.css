@@ -14,7 +14,11 @@ code {
 .app-frame{
   margin: 5%;
   padding: 30px;
-  width: calc(80vh);
+  width: auto;
+  background-image: url('../src/assets/img/panelBeens.png');
+  background-size: contain;
+  background-repeat: unset;
+  background-position: center;
 }
 .customer-actions{
   background: #AAA;
@@ -27,15 +31,18 @@ code {
   height: 30px;
   margin: 5px;
 }
+.customerts-list{
+  padding-top: 1rem;
+}
 .app-header{
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  font-size: 3rem;
+  font-size: rem;
   position: relative;
   width: auto;
-  height: 400px;
+  height: 100px;
   background-color: white;
   border: 1px solid rgba(59, 58,58,0.5);
   border-radius: 20px;
@@ -45,4 +52,12 @@ code {
 }
 .app-header:hover{
   top: -50px;
+}
+.customers-list-item .fields{
+
+  width: calc(300px);
+  margin: 1px;
+  padding: 5px;
+  display: inline-block;
+  background: #dcdcdc;
 }

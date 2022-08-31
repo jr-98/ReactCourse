@@ -10,12 +10,12 @@ const CustomerList = ({ customers, urlPath }) => {
                     customers && customers.map(c =>
                         <CustomerListItem
                             key={c.dni}
+                            dni={c.dni}
                             name={c.name}
                             editAction={'Editar'}
                             delAction={'Borrar'}
                             urlPath={urlPath} />)
                 }
-                )
             </div>
         </div>
     )
