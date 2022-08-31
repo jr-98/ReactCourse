@@ -7,7 +7,7 @@ const AppFrame = ({ header, body }) => {
         <div className='app-frame'>
             <AppHeader title={header}></AppHeader>
             <div>{body}</div>
-            <div>Aplicación basica de react</div>
+            <div className='footer-text'>Aplicación basica de react pensada para administrar lista de Clientes</div>
         </div>
     )
 }

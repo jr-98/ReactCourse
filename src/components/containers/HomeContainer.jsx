@@ -10,10 +10,9 @@ const HomeContainer = () => {
     }
     return (
         <AppFrame
-            header='Home'
+            header='Administracion de Clientes'
             body={
                 <div style={{ paddingTop: '10px' }}>
-                    Esta es la pantalla inicial
                     <CustomerActions>
                         <button onClick={handleOnclick}>Listado de clientes</button>
                     </CustomerActions>

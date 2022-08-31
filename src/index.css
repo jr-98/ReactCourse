@@ -53,11 +53,22 @@ code {
 .app-header:hover{
   top: -50px;
 }
+.customers-list-item{
+  justify-content: center !important;
+  margin: auto;
+  display: flex;
+}
 .customers-list-item .fields{
-
   width: calc(300px);
   margin: 1px;
   padding: 5px;
   display: inline-block;
   background: #dcdcdc;
+}
+.footer-text{
+  text-align: center;
+  margin: auto;
+  font-style: italic;
+  font-weight: bolder;
+  font-size: 1rem;
 }
