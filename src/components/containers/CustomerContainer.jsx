@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import AppFrame from '../AppFrame'
 import CustomerActions from '../CustomerActions'
 import CustomersList from '../CustomerList'
@@ -26,10 +27,11 @@ const customers = [
     },
 
 ];
-const handleAddNew = () => {
-
-}
 const CustomerContainer = () => {
+    const navigate = useNavigate()
+    const handleAddNew = () => {
+        navigate('/customers/new')
+    }
 
     const renderBody = customers => (
         <>
