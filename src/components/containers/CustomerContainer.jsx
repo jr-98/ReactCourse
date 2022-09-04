@@ -1,8 +1,11 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import AppFrame from '../AppFrame'
 import CustomerActions from '../CustomerActions'
 import CustomersList from '../CustomerList'
+import { fetchCustomer } from '../../actions/fetchCustomer';
+import { Link } from 'react-router-dom';
 
 const customers = [
     {
@@ -27,29 +30,38 @@ const customers = [
     },
 
 ];
-const CustomerContainer = () => {
-    const navigate = useNavigate()
-    const handleAddNew = () => {
-        navigate('/customers/new')
+
+class CustomerContainer extends Component {
+    componentDidMount() {
+        this.props.fetchCustomer()
     }
 
-    const renderBody = customers => (
+    renderBody = customers => (
         <>
             <CustomersList
                 customers={customers && customers}
                 urlPath={'customers/'} />
             <CustomerActions >
-                <button onClick={handleAddNew}>Nuevo cliente</button>
+                <button>
+                    <Link to='/customers/new' style={{ textDecoration: 'none' }} >Nuevo cliente</Link>
+                </button>
             </CustomerActions>
         </>
     )
+    render() {
+        return (
+            <AppFrame
+                header='Listado de clientes'
+                body={this.renderBody(customers)} >
+            </AppFrame>
+        )
+    }
 
-    return (
-        <AppFrame
-            header='Listado de clientes'
-            body={renderBody(customers)}>
-        </AppFrame>
-    )
 }
-
-export default CustomerContainer
+CustomerContainer.protoTypes = {
+    fetchCustomer: PropTypes.func.isRequired
+}
+const mapDispatchToProps = dispatch => ({
+    fetchCustomer: () => dispatch(fetchCustomer())
+})
+export default connect(null, mapDispatchToProps)(CustomerContainer)
