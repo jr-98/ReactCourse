@@ -61,7 +61,6 @@ class CustomerContainer extends Component {
 CustomerContainer.protoTypes = {
     fetchCustomer: PropTypes.func.isRequired
 }
-const mapDispatchToProps = dispatch => ({
-    fetchCustomer: () => dispatch(fetchCustomer())
-})
+const mapDispatchToProps = { fetchCustomer }
+
 export default connect(null, mapDispatchToProps)(CustomerContainer)
