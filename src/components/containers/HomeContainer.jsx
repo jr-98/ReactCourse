@@ -14,7 +14,7 @@ const HomeContainer = () => {
             body={
                 <div style={{ paddingTop: '10px' }}>
                     <CustomerActions>
-                        <button onClick={handleOnclick}>Listado de clientes</button>
+                        <button className='button type3' onClick={handleOnclick}>Listado de clientes</button>
                     </CustomerActions>
                 </ div>
             }

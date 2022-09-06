@@ -36,3 +36,43 @@
     transform: rotate(360deg);
   }
 }
+
+.button.type3{color:#435a6b;
+position: relative;
+width:277px;
+height:50px;
+/* line-height: 60px; */
+text-align: center;
+cursor: pointer;
+font-weight:600;
+font-size:17px;
+z-index: 1;
+}
+.button.type3.type3::after,.button.type3.type3::before{
+  content:"";
+  display:block;
+  position:absolute;
+  width:20%;
+  height:20%;
+  z-index: 1;
+  border:2px solid;transition:all .6s ease;border-radius:2px
+}
+.button.type3.type3::after{
+  bottom:0;
+  z-index: 1;
+  right:0;
+  border-color:transparent #435a6b #435a6b transparent
+}
+.button.type3.type3::before{
+  top:0;
+  z-index: 1;
+  left:0;
+  border-color:#435a6b transparent transparent #435a6b
+}
+.button.type3.type3:hover:after,.button.type3.type3:hover:before{
+  border-color:#435a6b;
+  z-index: 1;
+  width:277px;
+height:50px;
+z-index: 1;
+}
