@@ -6,7 +6,7 @@ import CustomerActions from '../CustomerActions'
 import CustomersList from '../CustomerList'
 import { fetchCustomer } from '../../actions/fetchCustomer';
 import { Link } from 'react-router-dom';
-import { customers } from '../../reducers/customers';
+import { getCustomers } from '../../selectors/customers';
 
 class CustomerContainer extends Component {
     componentDidMount() {
@@ -43,7 +43,7 @@ CustomerContainer.defaultProps = {
     customers: []
 };
 const mapStateToProps = state => ({
-    customers: state.customers
+    customers: getCustomers(state)
 })
 
 export default connect(mapStateToProps, { fetchCustomer })(CustomerContainer)
