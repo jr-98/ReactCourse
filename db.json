@@ -1,0 +1,33 @@
+{
+  "posts": [{
+    "id": 1,
+    "title": "json-server",
+    "author": "typicode"
+  }],
+  "comments": [{
+    "id": 1,
+    "body": "some comment",
+    "postId": 1
+  }],
+  "profile": {
+    "name": "typicode"
+  },
+  "customers": [{
+    "dni": "27000000",
+    "name": "Juan Perez",
+    "age": 37
+  }, {
+    "dni": "1104316548",
+    "name": "Evelyn Alexandra",
+    "age": 24
+  }, {
+    "dni": "3209320932",
+    "name": "Bambestre Rosalia",
+    "age": 34
+  }, {
+    "dni": "3209343442",
+    "name": "Totis del Carmen ",
+    "age": 34
+  }]
+
+}
