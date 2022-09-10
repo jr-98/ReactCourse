@@ -6,12 +6,13 @@ import './App.css';
 
 function App() {
   const RenderCustomerNewContainer = () => <h1>render Customer New Container</h1>;
+
   return (
     <Router>
       <Routes>
         <Route exact path='/' element={<HomeContainer />} />
         <Route exact path='/customers' element={<CustomersContainer />} />
-        <Route exact path='/customers/:dni' element={<CustomerContainer />} />
+        <Route exact path='/customers/:id' element={<CustomerContainer />} />
         <Route exact path='/customers/new' element={<RenderCustomerNewContainer />} />
       </Routes>
     </Router >
