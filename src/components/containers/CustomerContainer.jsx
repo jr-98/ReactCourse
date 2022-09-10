@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppFrame from '../AppFrame';
+import { selectCustomerById } from '../../selectors/customers';
 
 const CustomerContainer = ({ customers }) => {
     const { id } = useParams();
-    const customer = customers.customers.find(c => c.dni === id)
+    const customer = selectCustomerById(customers, id)
     // se obtinene los paramtros que se pasan en el link 
     return (
         <div>
