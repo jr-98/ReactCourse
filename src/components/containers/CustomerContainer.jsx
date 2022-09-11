@@ -7,16 +7,17 @@ import { selectCustomerById } from '../../selectors/customers';
 
 const CustomerContainer = ({ customers }) => {
     const { id } = useParams();
-    const customer = selectCustomerById(customers, id)
     // se obtinene los paramtros que se pasan en el link 
+    const { dni, name, age } = selectCustomerById(customers, id)
+
     return (
         <div>
             <AppFrame header={`Cliente ${id}`}
                 body={
                     <div>
-                        <h3>Identidicacion: {id}</h3>
-                        <h3>Nombre: {customer.name} </h3>
-                        <h3>Edad: {customer.age} </h3>
+                        <h3>Identidicacion: {dni}</h3>
+                        <h3>Nombre: {name} </h3>
+                        <h3>Edad: {age} </h3>
                     </div>
                 }>
             </AppFrame >
