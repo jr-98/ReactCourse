@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useParams } from 'react-router-dom';
 import HomeContainer from './components/containers/HomeContainer';
 import CustomersContainer from './components/containers/CustomersContainer';
 import CustomerContainer from './components/containers/CustomerContainer';
@@ -6,7 +6,7 @@ import CustomerEdit from './components/CustomerEdit';
 import CustomerData from './components/CustomersData'
 import './App.css';
 
-function App() {
+function App({ customers }) {
   const RenderCustomerNewContainer = () => <h1>render Customer New Container</h1>;
 
   return (

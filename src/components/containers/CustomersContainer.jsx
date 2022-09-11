@@ -8,11 +8,10 @@ import { fetchCustomer } from '../../actions/fetchCustomer';
 import { Link } from 'react-router-dom';
 import { getCustomers } from '../../selectors/customers';
 
-class CustomerContainer extends Component {
+class CustomersContainer extends Component {
     componentDidMount() {
         this.props.fetchCustomer()
     }
-
     renderBody = customers => (
         <>
             <CustomersList
@@ -35,15 +34,15 @@ class CustomerContainer extends Component {
     }
 
 }
-CustomerContainer.protoTypes = {
+CustomersContainer.protoTypes = {
     fetchCustomer: PropTypes.func.isRequired,
     customers: PropTypes.array.isRequired,
 }
-CustomerContainer.defaultProps = {
+CustomersContainer.defaultProps = {
     customers: []
 };
 const mapStateToProps = state => ({
     customers: getCustomers(state)
 })
 
-export default connect(mapStateToProps, { fetchCustomer })(CustomerContainer)
+export default connect(mapStateToProps, { fetchCustomer })(CustomersContainer)

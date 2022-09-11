@@ -4,21 +4,62 @@ import { useParams } from 'react-router'
 import AppFrame from '../AppFrame'
 import { selectCustomerById } from '../../selectors/customers'
 import { connect } from 'react-redux'
+import { reduxForm, Field } from 'redux-form'
 
 const CustomerEdit = ({ customers }) => {
     const { id } = useParams();
     const { name, dni, age } = selectCustomerById(customers, id);
+    console.log(name, dni, age)
+
+    const handleEdit = () => { }
     return (
         <AppFrame
-            header='Edición de cliente'
+            header={name}
             body={
                 <>
                     <h2>Edicion del Cliente</h2>
-                    <h3>Nombre: {name} Dni:{dni} Ege:{age}</h3>
+                    <form action='' className='customer-form'>
+                        <div>
+                            <label htmlFor='name'>Nombre</label>
+                            <Field
+                                id='nameCustomer'
+                                name='name'
+                                component="input"
+                                type="text"
+                                placeholder={name}
+                                onChange={handleEdit}
+                                value={`${name}`} />
+                        </div>
+                        <div>
+                            <label htmlFor='dni'>DNI</label>
+                            <Field
+                                id='dniCustomer'
+                                name='dni'
+                                component="input"
+                                type="text"
+                                placeholder={dni}
+                                onChange={handleEdit}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor='age'>Edad</label>
+                            <Field
+                                id='ageCustomer'
+                                name='age'
+                                component="input"
+                                type="number"
+                                placeholder={age}
+                                onChange={handleEdit}
+                                onLoad={true}
+                                value={1}
+                            />
+
+                        </div>
+                    </form>
                 </>
             }>
 
-        </AppFrame>
+        </AppFrame >
     )
 }
 
@@ -31,4 +72,5 @@ CustomerEdit.propTypes = {
 const mapStateToProps = (state) => ({
     customers: state
 })
-export default connect(mapStateToProps, null)(CustomerEdit)
+
+export default reduxForm({ form: 'CustomerEdit', enableReinitialize: true })(connect(mapStateToProps, null)(CustomerEdit))

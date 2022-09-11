@@ -9,7 +9,6 @@ const CustomerContainer = ({ customers }) => {
     const { id } = useParams();
     // se obtinene los paramtros que se pasan en el link 
     const { dni, name, age } = selectCustomerById(customers, id)
-
     return (
         <div>
             <AppFrame header={`Cliente ${id}`}
