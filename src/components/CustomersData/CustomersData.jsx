@@ -14,9 +14,9 @@ const CustomersData = ({ customers }) => {
             body={
                 <div className="customers-data">
                     <h2> Datos del cliente</h2>
-                    <div><strong>Nombre:</strong><i> {name}</i></div>
-                    <div><strong>DNI:</strong><i> {dni}</i></div>
-                    <div><strong>Edad:</strong><i> {age}</i></div>
+                    <div><strong>Nombre:</strong><i>{name}</i></div>
+                    <div><strong>DNI:</strong><i>{dni}</i></div>
+                    <div><strong>Edad:</strong><i>{age}</i></div>
                 </div>
             }>
 
@@ -25,8 +25,8 @@ const CustomersData = ({ customers }) => {
 }
 
 CustomersData.propTypes = {
-    name: PropTypes.string.isRequired,
-    dni: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    dni: PropTypes.string,
     age: PropTypes.number,
     customers: PropTypes.object.isRequired
 }
