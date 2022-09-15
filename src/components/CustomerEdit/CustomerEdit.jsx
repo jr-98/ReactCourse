@@ -10,11 +10,25 @@ const CustomerEdit = ({ customers }) => {
     const { id } = useParams();
     const { name, dni, age } = selectCustomerById(customers, id);
     const [stateForm, setStateForm] = useState({ name: name, dni: dni, age: age })
+
     function handleChange(evt) {
-        const { value } = evt.target
+        const { value, name } = evt.target
+        // value.preventDefault()
+        /*
+          Este snippet:
+          1. Clona el estado actual
+          2. Reemplaza solo el valor del
+             input que ejecutó el evento
+        */
+        const newValues = {
+            ...stateForm,
+            [name]: value,
+        };
+        // Sincroniza el estado de nuevo
+        setStateForm(newValues);
+    };
 
-    }
-
+    console.log(stateForm)
     return (
         <AppFrame
             header={name}
@@ -31,13 +45,6 @@ const CustomerEdit = ({ customers }) => {
                                 value={stateForm.name}
                                 onChange={handleChange}
                             />
-                            {/* <Field
-                                id='nameCustomer'
-                                name='name'
-                                component={renderField}
-                                type="text"
-                            // placeholder={name}
-                            /> */}
                         </div>
                         <div>
                             <label htmlFor='dni'>DNI</label>
@@ -48,13 +55,6 @@ const CustomerEdit = ({ customers }) => {
                                 value={stateForm.dni}
                                 onChange={handleChange}
                             />
-                            {/* <Field
-                                id='dniCustomer'
-                                name='dni'
-                                type="text"
-                                component="input"
-                            // placeholder={dni}
-                            /> */}
                         </div>
                         <div>
                             <label htmlFor='age'>Edad</label>
@@ -65,14 +65,6 @@ const CustomerEdit = ({ customers }) => {
                                 value={stateForm.age}
                                 onChange={handleChange}
                             />
-                            {/* <Field
-                                id='ageCustomer'
-                                name='age'
-                                type="number"
-                                component="input"
-                            // placeholder={age}
-                            /> */}
-
                         </div>
                     </form>
                 </>
