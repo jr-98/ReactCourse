@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router'
 import AppFrame from '../AppFrame'
@@ -7,9 +7,11 @@ import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 
 const CustomerEdit = ({ customers }) => {
+    const rgxTxt = new RegExp(/^[a-zA-Z]/)
+    const rgxNum = new RegExp(/^[0-9,$]*$/)
     const { id } = useParams();
     const { name, dni, age } = selectCustomerById(customers, id);
-    const [stateForm, setStateForm] = useState({ name: name, dni: dni, age: age })
+    const [stateForm, setStateForm] = useState({ name: name, dni: dni, age: age, nameError: false, dniError: false, ageError: false })
 
     function handleChange(evt) {
         const { value, name } = evt.target
@@ -27,6 +29,32 @@ const CustomerEdit = ({ customers }) => {
         // Sincroniza el estado de nuevo
         setStateForm(newValues);
     };
+    function handleBlurTxtName() {
+        const hasError = !rgxTxt.test(name);
+        console.log(hasError)
+        setStateForm({ ...stateForm, nameError: hasError });
+    }
+    function handleBlurTxtDni() {
+        const hasError = !rgxNum.test(dni);
+        setStateForm({ ...stateForm, dniError: hasError });
+    }
+    function handleBlurNum() {
+        const hasError = !rgxNum.test(age);
+        setStateForm((stateForm) => ({ ...stateForm, ageError: hasError }));
+    }
+    const ErrorComponent = ({ value, error, msj }) => {
+        if (value.length === 0) {
+            error = true
+            msj = 'Este campo es requerido'
+        }
+        console.log(error, msj)
+        return (<p
+            id="nameErr"
+            aria-live="assertive"
+            style={{ display: error ? true : 'none', color: 'red' }} >
+            {msj}
+        </p>)
+    }
 
     console.log(stateForm)
     return (
@@ -44,7 +72,13 @@ const CustomerEdit = ({ customers }) => {
                                 type="text"
                                 value={stateForm.name}
                                 onChange={handleChange}
+                                /* onChange para sincronizar el valor del campo */
+                                onBlur={handleBlurTxtName}
+                                /* onBlur para sincronizar la validación del campo */
+                                aria-errormessage="nameCustomerError"
+                                aria-invalid={stateForm.nameError}
                             />
+                            <ErrorComponent value={stateForm.name} error={stateForm.nameError} msj=' Ingrese solo valores alfanuméricos' />
                         </div>
                         <div>
                             <label htmlFor='dni'>DNI</label>
@@ -53,8 +87,11 @@ const CustomerEdit = ({ customers }) => {
                                 name='dni'
                                 type="text"
                                 value={stateForm.dni}
+                                onBlur={handleBlurTxtDni}
                                 onChange={handleChange}
+                                aria-errormessage={stateForm.dniError}
                             />
+                            <ErrorComponent value={stateForm.dni} error={stateForm.dniError} msj='Ingrese solo valores numéricos' />
                         </div>
                         <div>
                             <label htmlFor='age'>Edad</label>
@@ -64,7 +101,10 @@ const CustomerEdit = ({ customers }) => {
                                 type="number"
                                 value={stateForm.age}
                                 onChange={handleChange}
+                                onBlur={handleBlurNum}
+                                aria-errormessage={stateForm.ageError}
                             />
+                            <ErrorComponent value={stateForm.age} error={stateForm.ageError} msj='Ingrese solo valores numéricos' />
                         </div>
                     </form>
                 </>
