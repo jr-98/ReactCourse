@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomeContainer from './components/containers/HomeContainer';
 import CustomersContainer from './components/containers/CustomersContainer';
 import CustomerContainer from './components/containers/CustomerContainer';

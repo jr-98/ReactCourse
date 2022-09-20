@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { useParams } from 'react-router'
+import { useParams, useNavigate } from 'react-router'
 import AppFrame from '../AppFrame'
 import { selectCustomerById } from '../../selectors/customers'
 import { connect } from 'react-redux'
+import { fetchCustomer } from '../../actions/fetchCustomer'
 import { reduxForm } from 'redux-form'
+import { updateCustomer } from '../../actions/updateCustomers'
 
-const CustomerEdit = ({ customers }) => {
-    const rgxTxt = new RegExp(/^[a-zA-Z]/)
-    const rgxNum = new RegExp(/^[0-9,$]*$/)
+
+const CustomerEdit = ({ customers, fetchCustomer, updateCustomer }) => {
+    const rgxTxt = new RegExp(/^[a-zA-Z]/, 'i')
     const { id } = useParams();
-    const { name, dni, age } = selectCustomerById(customers, id);
+    const { name, dni, age } = selectCustomerById(customers && customers, id && id);
     const [stateForm, setStateForm] = useState({ name: name, dni: dni, age: age, nameError: false, dniError: false, ageError: false })
-
     function handleChange(evt) {
         const { value, name } = evt.target
         // value.preventDefault()
@@ -29,25 +30,24 @@ const CustomerEdit = ({ customers }) => {
         // Sincroniza el estado de nuevo
         setStateForm(newValues);
     };
-    function handleBlurTxtName() {
+    function handleBlurTxt() {
         const hasError = !rgxTxt.test(name);
         console.log(hasError)
-        setStateForm({ ...stateForm, nameError: hasError });
+        setStateForm((stateForm) => ({ ...stateForm, nameError: hasError }));
     }
-    function handleBlurTxtDni() {
-        const hasError = !rgxNum.test(dni);
-        setStateForm({ ...stateForm, dniError: hasError });
-    }
-    function handleBlurNum() {
-        const hasError = !rgxNum.test(age);
-        setStateForm((stateForm) => ({ ...stateForm, ageError: hasError }));
+    function handleBlurNum({ value, stateName }) {
+        const hasError = isNaN(Number(value))
+        const newValues = {
+            ...stateForm,
+            [`${stateName}Error`]: hasError,
+        };
+        setStateForm(newValues);
     }
     const ErrorComponent = ({ value, error, msj }) => {
         if (value.length === 0) {
             error = true
             msj = 'Este campo es requerido'
         }
-        console.log(error, msj)
         return (<p
             id="nameErr"
             aria-live="assertive"
@@ -55,15 +55,34 @@ const CustomerEdit = ({ customers }) => {
             {msj}
         </p>)
     }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const values = {
+            id: stateForm.dni,
+            dni: stateForm.dni,
+            name: stateForm.name,
+            age: stateForm.age,
+        }
+        console.log('estos son los valores', values)
+        updateCustomer(id, values)
+    }
+    const navigate = useNavigate();
+    const onBack = () => {
+        navigate('/customers')
+    }
+    useEffect(() => {
+        fetchCustomer()
+    }, [])
 
-    console.log(stateForm)
     return (
         <AppFrame
             header={name}
             body={
                 <>
                     <h2>Edicion del Cliente</h2>
-                    <form action='' className='customer-form' >
+                    <form
+                        className='customer-form'
+                        onSubmit={handleSubmit} >
                         <div>
                             <label htmlFor='name'>Nombre</label>
                             <input
@@ -73,12 +92,12 @@ const CustomerEdit = ({ customers }) => {
                                 value={stateForm.name}
                                 onChange={handleChange}
                                 /* onChange para sincronizar el valor del campo */
-                                onBlur={handleBlurTxtName}
+                                onBlur={handleBlurTxt}
                                 /* onBlur para sincronizar la validación del campo */
                                 aria-errormessage="nameCustomerError"
                                 aria-invalid={stateForm.nameError}
                             />
-                            <ErrorComponent value={stateForm.name} error={stateForm.nameError} msj=' Ingrese solo valores alfanuméricos' />
+                            <ErrorComponent value={stateForm.name} error={stateForm.nameError} msj='Ingrese solo valores alfanuméricos' />
                         </div>
                         <div>
                             <label htmlFor='dni'>DNI</label>
@@ -87,11 +106,11 @@ const CustomerEdit = ({ customers }) => {
                                 name='dni'
                                 type="text"
                                 value={stateForm.dni}
-                                onBlur={handleBlurTxtDni}
+                                onBlur={() => handleBlurNum({ value: stateForm.dni, stateName: "dni" })}
                                 onChange={handleChange}
                                 aria-errormessage={stateForm.dniError}
                             />
-                            <ErrorComponent value={stateForm.dni} error={stateForm.dniError} msj='Ingrese solo valores numéricos' />
+                            <ErrorComponent value={stateForm} error={stateForm.dniError} msj='Ingrese solo valores numéricos' />
                         </div>
                         <div>
                             <label htmlFor='age'>Edad</label>
@@ -99,12 +118,27 @@ const CustomerEdit = ({ customers }) => {
                                 id='ageCustomer'
                                 name='age'
                                 type="number"
+                                min={0}
                                 value={stateForm.age}
                                 onChange={handleChange}
-                                onBlur={handleBlurNum}
+                                onBlur={() => handleBlurNum({ value: stateForm.age, stateName: "age" })}
                                 aria-errormessage={stateForm.ageError}
                             />
                             <ErrorComponent value={stateForm.age} error={stateForm.ageError} msj='Ingrese solo valores numéricos' />
+                        </div>
+                        <div className='container-button'>
+                            <div className='submit-from'>
+                                <button
+                                    disabled={!stateForm.nameError && !stateForm.dniError && !stateForm.ageError ? false : true}
+                                    type='submit'>
+                                    Continuar
+                                </button>
+                            </div>
+                            <div className='back-button'>
+                                <button onClick={onBack}>
+                                    Atras
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </>
@@ -118,9 +152,15 @@ CustomerEdit.propTypes = {
     dni: PropTypes.string,
     age: PropTypes.string,
     customers: PropTypes.object,
+    fetchCustomer: PropTypes.func,
+    updateCustomer: PropTypes.func
 }
 const mapStateToProps = (state) => ({
     customers: state,
 })
 const CustomerEditForm = reduxForm({ form: 'CustomerEdit', enableReinitialize: true })(CustomerEdit);
-export default connect(mapStateToProps)(CustomerEditForm);
+
+export default connect(mapStateToProps, {
+    fetchCustomer,
+    updateCustomer
+})(CustomerEditForm);

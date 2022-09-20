@@ -76,3 +76,79 @@ z-index: 1;
 height:50px;
 z-index: 1;
 }
+.submit-from{
+  height: 100%;
+  padding-top: 2em;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  position: relative;
+  display: flex;
+}
+.submit-from button{
+  border-radius: 45px;
+  border: none;
+  width: 85%;
+  height: 35px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  background-color: rgba(245, 134, 52, 0.807);
+  box-shadow: 0px 8px 15px rgba(245, 134, 52, 0.4);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+.submit-from button:hover{
+ background-color: rgb(1, 173, 229);
+ box-shadow: 0px 15px 20px rgba(73, 118, 138,0.3);
+ width: 90%;
+ color: #fff;
+ transform: translateY(-7px);
+}
+.submit-from button:disabled{
+  border-radius: 40px;
+  border: none;
+  height: 35px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 300;
+  background-color: rgb(73, 118, 138);
+  box-shadow: 0px 8px 15px rgba(74, 85, 88, 0.779);
+  cursor: pointer;
+}
+
+.back-button{
+  height: 100%;
+  width: 30%;
+  padding-top: 2em;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  display: flex;
+}
+.back-button button{
+  border-radius: 45px;
+  border: none;
+  width: 85%;
+  height: 35px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  background-color: rgb(1, 173, 229);
+  box-shadow: 0px 15px 20px rgba(73, 118, 138,0.3);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+.back-button button:hover{
+  background-color: rgba(245, 134, 52, 0.807);
+  box-shadow: 0px 8px 15px rgba(245, 134, 52, 0.4);
+  color: #fff;
+   width: 90%;
+  transform: translateY(-7px);
+}
+.container-button{
+  display:flex ;
+  justify-content: center;
+}
