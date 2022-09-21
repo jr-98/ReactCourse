@@ -8,8 +8,7 @@ import { fetchCustomer } from '../../actions/fetchCustomer'
 import { reduxForm } from 'redux-form'
 import { updateCustomer } from '../../actions/updateCustomers'
 
-
-const CustomerEdit = ({ customers, fetchCustomer, updateCustomer }) => {
+const CustomerEdit = ({ customers, fetchCustomer, updateCustomer, submitting }) => {
     const rgxTxt = new RegExp(/^[a-zA-Z]/, 'i')
     const { id } = useParams();
     const { name, dni, age } = selectCustomerById(customers && customers, id && id);
@@ -61,10 +60,15 @@ const CustomerEdit = ({ customers, fetchCustomer, updateCustomer }) => {
             id: stateForm.dni,
             dni: stateForm.dni,
             name: stateForm.name,
-            age: stateForm.age,
+            age: parseInt(stateForm.age),
         }
         console.log('estos son los valores', values)
-        updateCustomer(id, values)
+        handleOnSubmitSuccess()
+        return updateCustomer(id, values)
+    }
+    const handleOnSubmitSuccess = () => {
+        alert('Usuario editado exitsamente!')
+        onBack()
     }
     const navigate = useNavigate();
     const onBack = () => {
@@ -73,7 +77,6 @@ const CustomerEdit = ({ customers, fetchCustomer, updateCustomer }) => {
     useEffect(() => {
         fetchCustomer()
     }, [])
-
     return (
         <AppFrame
             header={name}
@@ -129,7 +132,7 @@ const CustomerEdit = ({ customers, fetchCustomer, updateCustomer }) => {
                         <div className='container-button'>
                             <div className='submit-from'>
                                 <button
-                                    disabled={!stateForm.nameError && !stateForm.dniError && !stateForm.ageError ? false : true}
+                                    disabled={(!stateForm.nameError && !stateForm.dniError && !stateForm.ageError) || !submitting ? false : true}
                                     type='submit'>
                                     Continuar
                                 </button>
