@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import AppFrame from '../AppFrame';
 import { fetchCustomer } from '../../actions/fetchCustomer'
 import { selectCustomerById } from '../../selectors/customers';
 import CustomerEdit from '../CustomerEdit/CustomerEdit';
@@ -16,7 +15,7 @@ class CustomerContainer extends Component {
 
         // const customers = selectCustomerById()
         if (url === 'edit') {
-            return <CustomerEdit />
+            return <CustomerEdit customers={customer} />
         } else {
             return <CustomersData customers={customer} />
         }
@@ -24,13 +23,7 @@ class CustomerContainer extends Component {
 
     render() {
         return (
-            <div>
-                <AppFrame header={`Cliente${this.props.dni}`}
-                    body={
-                        this.renderBody()
-                    }>
-                </AppFrame >
-            </div >
+            this.renderBody()
         )
     }
 }

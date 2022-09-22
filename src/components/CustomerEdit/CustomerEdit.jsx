@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import AppFrame from '../AppFrame';
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import { useParams, useNavigate } from 'react-router'
-import AppFrame from '../AppFrame'
-import { selectCustomerById } from '../../selectors/customers'
 import { fetchCustomer } from '../../actions/fetchCustomer'
 import { updateCustomer } from '../../actions/updateCustomers'
 
-const CustomerEdit = ({ customers, fetchCustomer, updateCustomer, submitting }) => {
+const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCustomer, updateCustomer, submitting }) => {
     const rgxTxt = new RegExp(/^[a-zA-Z]/, 'i')
     const { id } = useParams();
-    const { name, dni, age } = selectCustomerById(customers && customers, id && id);
+    const { name, dni, age } = customers && customers;
     const [stateForm, setStateForm] = useState({ name: name, dni: dni, age: age, nameError: false, dniError: false, ageError: false })
     function handleChange(evt) {
         const { value, name } = evt.target
@@ -78,8 +77,7 @@ const CustomerEdit = ({ customers, fetchCustomer, updateCustomer, submitting }) 
         fetchCustomer()
     }, [])
     return (
-        <AppFrame
-            header={name}
+        <AppFrame header={`Edicion de Cliente ${name}`}
             body={
                 <>
                     <h2>Edicion del Cliente</h2>
@@ -145,7 +143,10 @@ const CustomerEdit = ({ customers, fetchCustomer, updateCustomer, submitting }) 
                         </div>
                     </form>
                 </>
-            } />
+            }>
+
+        </AppFrame >
+
     )
 }
 
@@ -158,12 +159,9 @@ CustomerEdit.propTypes = {
     fetchCustomer: PropTypes.func,
     updateCustomer: PropTypes.func
 }
-const mapStateToProps = (state) => ({
-    customers: state,
-})
 const CustomerEditForm = reduxForm({ form: 'CustomerEdit', enableReinitialize: true })(CustomerEdit);
 
-export default connect(mapStateToProps, {
+export default connect(null, {
     fetchCustomer,
     updateCustomer
 })(CustomerEditForm);
