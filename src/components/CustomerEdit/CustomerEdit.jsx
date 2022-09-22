@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { reduxForm } from 'redux-form'
 import { useParams, useNavigate } from 'react-router'
 import AppFrame from '../AppFrame'
 import { selectCustomerById } from '../../selectors/customers'
-import { connect } from 'react-redux'
 import { fetchCustomer } from '../../actions/fetchCustomer'
-import { reduxForm } from 'redux-form'
 import { updateCustomer } from '../../actions/updateCustomers'
 
 const CustomerEdit = ({ customers, fetchCustomer, updateCustomer, submitting }) => {

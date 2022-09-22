@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { getCustomers } from '../../selectors/customers';
 
 class CustomersContainer extends Component {
+    
     componentDidMount() {
         this.props.fetchCustomer()
     }
