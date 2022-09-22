@@ -1,55 +1,25 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { useLocation, Route, Router, Routes, useNavigate, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppFrame from '../AppFrame';
 import { fetchCustomer } from '../../actions/fetchCustomer'
 import { selectCustomerById } from '../../selectors/customers';
 import CustomerEdit from '../CustomerEdit/CustomerEdit';
 import CustomersData from '../CustomersData/CustomersData';
-
 class CustomerContainer extends Component {
     renderBody = () => {
         const location = window.location.href.split('/')
         const locationLength = location.length
         const url = location[locationLength - 1]
+        const id = location[4]
+        const customer = selectCustomerById(this.props.customers, id)
 
+        // const customers = selectCustomerById()
         if (url === 'edit') {
             return <CustomerEdit />
         } else {
-            <CustomersData />
+            return <CustomersData customers={customer} />
         }
-
-        // const location = useLocation()
-        // console.log(location)
-        // <Router>
-        //     <Routes>
-
-        /* <Route path='/:id' element={<CustomersData />} />
-        <Route path='/:id/edit' element={<CustomerEdit />} />
-        {/* { */
-
-        //             ({match}) => {
-
-        //                     }
-        //                 }
-        //  */}
-
-        //         </Route>
-        //     </Routes>
-        // </Router>
-
-
-
-
-        // const { id } = useParams();
-        // se obtinene los paramtros que se pasan en el link\ 
-        // const { dni, name, age } = selectCustomerById(customers, id)
-        // const navigate = useNavigate()
-        // const onBack = () => {
-        //     navigate('/customers')
-        // }
-        return <></>
     }
 
     render() {
@@ -57,22 +27,7 @@ class CustomerContainer extends Component {
             <div>
                 <AppFrame header={`Cliente${this.props.dni}`}
                     body={
-
                         this.renderBody()
-                        // <>
-                        // <div>
-                        //         <h3>Identidicacion: {dni}</h3>
-                        //         <h3>Nombre: {name} </h3>
-                        //         <h3>Edad: {age} </h3>
-                        //     </div>
-                        //     <div className='container-button'>
-                        //         <div className='back-button'>
-                        //             <button onClick={onBack}>
-                        //                 Atras
-                        //             </button>
-                        //         </div>
-                        //     </div>
-                        // </>
                     }>
                 </AppFrame >
             </div >
