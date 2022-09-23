@@ -8,6 +8,7 @@ import { fetchCustomer } from '../../actions/fetchCustomer'
 import { updateCustomer } from '../../actions/updateCustomers'
 
 const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCustomer, updateCustomer, submitting }) => {
+    fetchCustomer()
     const rgxTxt = new RegExp(/^[a-zA-Z]/, 'i')
     const { id } = useParams();
     const { name, dni, age } = customers && customers;
@@ -41,11 +42,7 @@ const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCusto
         };
         setStateForm(newValues);
     }
-    const ErrorComponent = ({ value, error, msj }) => {
-        if (value.length === 0) {
-            error = true
-            msj = 'Este campo es requerido'
-        }
+    const ErrorComponent = ({ error, msj }) => {
         return (<p
             id="nameErr"
             aria-live="assertive"
@@ -73,9 +70,7 @@ const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCusto
     const onBack = () => {
         navigate('/customers')
     }
-    useEffect(() => {
-        fetchCustomer()
-    }, [])
+
     return (
         <AppFrame header={`Edicion de Cliente ${name}`}
             body={
@@ -90,7 +85,7 @@ const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCusto
                                 id='nameCustomer'
                                 name='name'
                                 type="text"
-                                value={stateForm.name}
+                                value={stateForm.name ? stateForm.name : name}
                                 onChange={handleChange}
                                 /* onChange para sincronizar el valor del campo */
                                 onBlur={handleBlurTxt}
@@ -98,7 +93,7 @@ const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCusto
                                 aria-errormessage="nameCustomerError"
                                 aria-invalid={stateForm.nameError}
                             />
-                            <ErrorComponent value={stateForm.name} error={stateForm.nameError} msj='Ingrese solo valores alfanuméricos' />
+                            <ErrorComponent error={stateForm.nameError} msj='Ingrese solo valores alfanuméricos' />
                         </div>
                         <div>
                             <label htmlFor='dni'>DNI</label>
@@ -106,12 +101,12 @@ const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCusto
                                 id='dniCustomer'
                                 name='dni'
                                 type="text"
-                                value={stateForm.dni}
+                                value={stateForm.dni ? stateForm.dni : dni}
                                 onBlur={() => handleBlurNum({ value: stateForm.dni, stateName: "dni" })}
                                 onChange={handleChange}
                                 aria-errormessage={stateForm.dniError}
                             />
-                            <ErrorComponent value={stateForm} error={stateForm.dniError} msj='Ingrese solo valores numéricos' />
+                            <ErrorComponent error={stateForm.dniError} msj='Ingrese solo valores numéricos' />
                         </div>
                         <div>
                             <label htmlFor='age'>Edad</label>
@@ -120,7 +115,7 @@ const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCusto
                                 name='age'
                                 type="number"
                                 min={0}
-                                value={stateForm.age}
+                                value={stateForm.age ? stateForm.age : age}
                                 onChange={handleChange}
                                 onBlur={() => handleBlurNum({ value: stateForm.age, stateName: "age" })}
                                 aria-errormessage={stateForm.ageError}
@@ -152,9 +147,6 @@ const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCusto
 
 
 CustomerEdit.propTypes = {
-    name: PropTypes.string,
-    dni: PropTypes.string,
-    age: PropTypes.string,
     customers: PropTypes.object,
     fetchCustomer: PropTypes.func,
     updateCustomer: PropTypes.func
