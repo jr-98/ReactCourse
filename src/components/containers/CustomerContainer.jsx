@@ -5,25 +5,37 @@ import { fetchCustomer } from '../../actions/fetchCustomer'
 import { selectCustomerById } from '../../selectors/customers';
 import CustomerEdit from '../CustomerEdit/CustomerEdit';
 import CustomersData from '../CustomersData/CustomersData';
+import AppFrame from '../AppFrame';
 class CustomerContainer extends Component {
-    renderBody = () => {
+    getLocation = () => {
         const location = window.location.href.split('/')
         const locationLength = location.length
         const url = location[locationLength - 1]
         const id = location[4]
         const customer = selectCustomerById(this.props.customers, id)
-
-        // const customers = selectCustomerById()
+        return { url, customer }
+    }
+    renderBody = () => {
+        const { url, customer } = this.getLocation()
         if (url === 'edit') {
-            return <CustomerEdit customers={customer} />
+            return <CustomerEdit customers={customer} location='edit' />
         } else {
             return <CustomersData customers={customer} />
         }
     }
-
+    renderHeader = () => {
+        const { url, customer } = this.getLocation()
+        const header = url === 'edit' ? 'Edicion de cliente' : `${customer.name}`
+        return header
+    }
     render() {
         return (
-            this.renderBody()
+            <AppFrame
+                header={this.renderHeader()}
+                body={this.renderBody()}
+            >
+            </AppFrame>
+
         )
     }
 }

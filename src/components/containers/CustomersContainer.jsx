@@ -5,13 +5,17 @@ import AppFrame from '../AppFrame'
 import CustomerActions from '../CustomerActions'
 import CustomersList from '../CustomerList'
 import { fetchCustomer } from '../../actions/fetchCustomer';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getCustomers } from '../../selectors/customers';
 
 class CustomersContainer extends Component {
-    
+
     componentDidMount() {
         this.props.fetchCustomer()
+    }
+    navigate = ({ path }) => {
+        const navigate = useNavigate()
+        return navigate(path)
     }
     renderBody = customers => (
         <>
