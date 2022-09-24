@@ -11,7 +11,9 @@ import { getCustomers } from '../../selectors/customers';
 class CustomersContainer extends Component {
 
     componentDidMount() {
-        this.props.fetchCustomer()
+        if (this.props.customers.length === 0) {
+            this.props.fetchCustomer();
+        }
     }
     navigate = ({ path }) => {
         const navigate = useNavigate()

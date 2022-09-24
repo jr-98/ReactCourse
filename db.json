@@ -58,6 +58,18 @@
       "dni": "212121212221",
       "name": "Chistofer del Rocio",
       "age": 35
+    },
+    {
+      "id": "2700003",
+      "dni": "2700003",
+      "name": "Jonathan",
+      "age": 7
+    },
+    {
+      "id": "22222222",
+      "dni": "22222222",
+      "name": "Jose",
+      "age": 1
     }
   ]
 }
