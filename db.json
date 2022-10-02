@@ -1,18 +1,23 @@
 {
-  "posts": [{
-    "id": 1,
-    "title": "json-server",
-    "author": "typicode"
-  }],
-  "comments": [{
-    "id": 1,
-    "body": "some comment",
-    "postId": 1
-  }],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
   "profile": {
     "name": "typicode"
   },
-  "customers": [{
+  "customers": [
+    {
       "id": "27000000",
       "dni": "27000000",
       "name": "Sergio Jonson",
@@ -37,34 +42,10 @@
       "age": 34
     },
     {
-      "id": "2334455676",
-      "dni": "2334455676",
-      "name": "Oreo del Carmen",
-      "age": 1
-    },
-    {
-      "id": "1212121212",
-      "dni": "1212121212",
-      "name": "Azul",
-      "age": 34
-    },
-    {
-      "id": "212121212221",
-      "dni": "212121212221",
-      "name": "Chistofer del Rocio",
-      "age": 35
-    },
-    {
       "id": "2700003",
       "dni": "27000034",
       "name": "Jonathan Tillaguango",
       "age": 24
-    },
-    {
-      "id": "22222222",
-      "dni": "22222222",
-      "name": "Jose",
-      "age": 1
     }
   ]
 }

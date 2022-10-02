@@ -24,7 +24,7 @@ const CustomersData = ({ customers = [{ name: '', dni: '', age: '' }], isDeleteA
                     </button>
                 </div>
                 <div className='submit-from'>
-                    {isDeleteAllow && <button onClick={onDelete}>
+                    {isDeleteAllow && <button onClick={() => { onDelete(dni); onBack(); }}>
                         Borrar
                     </button>}
                 </div>

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchCustomer } from '../../actions/fetchCustomer'
+import { fetchCustomer } from '../../actions/fetchCustomer';
+import { deleteCustomer } from 'actions/deleteCustomer';
 import { selectCustomerById } from '../../selectors/customers';
 import CustomerEdit from '../CustomerEdit/CustomerEdit';
 import CustomersData from '../CustomersData/CustomersData';
@@ -15,8 +16,8 @@ class CustomerContainer extends Component {
         const customer = selectCustomerById(this.props.customers, id)
         return { url, customer }
     }
-    onDelete = () => {
-        console.log('Ondelete fuintion')
+    onDelete = id => {
+        this.props.deleteCustomer(id);
     }
 
     renderBody = () => {
@@ -48,7 +49,8 @@ class CustomerContainer extends Component {
 
 CustomerContainer.propTypes = {
     customers: PropTypes.object.isRequired,
-    fetchCustomer: PropTypes.func.isRequired
+    fetchCustomer: PropTypes.func.isRequired,
+    deleteCustomer: PropTypes.func
 }
 //Filatrado que me obtiene del estado clientes, el objeto cuta clave sea igual al dni proporsionado en el props 
 const mapStateToProps = (state) => ({
@@ -56,5 +58,6 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, {
-    fetchCustomer
+    fetchCustomer,
+    deleteCustomer
 })(CustomerContainer)
