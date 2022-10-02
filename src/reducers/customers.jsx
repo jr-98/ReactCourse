@@ -12,18 +12,16 @@ export const customers = handleActions({
         //[{id:1,dni:,nombre:,age:}]
         //[{id:2,dni:,nombre:,age:}] (actulizar este dato porque es el unico registro que se esta editando)
         const customers = state; // Nunca se trabaja con el stado original, siempore es con una copia
-        const initialValue = []
         // acc=[], customer=   //[{id:1,dni:,nombre:,age:}] 1 =>No match
         // acc=[{id:1,dni:,nombre:,age:}] , customer= //[{id:2,dni:,nombre:,age:}] 2 =>No match 
         const newCustomers = customers.reduce((acc, customer) => {
             if (customer.id === id) {
                 // customer= [{id:2,dni:'oldDni',nombre:'oldName':olddAge}] remplace to customer= [{id:2,dni:'newDni',nombre:'newName':newAge}]
-
                 return [...acc, customerPayload]
             } else {
                 return [...acc, customer]
             }
-        }, initialValue)
+        }, [])
         //[{id:1,dni:,nombre:,age:}]
         // [{ id: 2, dni: 'newDni', nombre: 'newName': newAge }]
         return newCustomers

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 
-const CustomersData = ({ customers = [{ name: '', dni: '', age: '' }] }) => {
+const CustomersData = ({ customers = [{ name: '', dni: '', age: '' }], isDeleteAllow, onDelete }) => {
 
     const { name, dni, age } = customers && customers;
     const navigate = useNavigate()
@@ -23,6 +23,11 @@ const CustomersData = ({ customers = [{ name: '', dni: '', age: '' }] }) => {
                         Atras
                     </button>
                 </div>
+                <div className='submit-from'>
+                    {isDeleteAllow && <button onClick={onDelete}>
+                        Borrar
+                    </button>}
+                </div>
             </div>
         </>
     )
@@ -32,7 +37,9 @@ CustomersData.propTypes = {
     name: PropTypes.string,
     dni: PropTypes.string,
     age: PropTypes.number,
-    customers: PropTypes.object.isRequired
+    customers: PropTypes.object.isRequired,
+    isDeleteAllow: PropTypes.bool,
+    onDelete: PropTypes.func
 }
 
 export default CustomersData

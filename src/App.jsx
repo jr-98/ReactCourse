@@ -13,6 +13,7 @@ function App() {
         <Route exact path='/customers' element={<CustomersContainer />} />
         <Route exact path='/customers/:id' element={<CustomerContainer />} />
         <Route exact path='/customers/:id/edit' element={<CustomerContainer />} />
+        <Route exact path='/customers/:id/delete' element={<CustomerContainer />} />
         <Route exact path='/customers/new' element={<NewCustomerContainer />} />
       </Routes>
     </Router >

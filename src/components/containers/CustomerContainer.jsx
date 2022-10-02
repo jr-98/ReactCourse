@@ -15,10 +15,16 @@ class CustomerContainer extends Component {
         const customer = selectCustomerById(this.props.customers, id)
         return { url, customer }
     }
+    onDelete = () => {
+        console.log('Ondelete fuintion')
+    }
+
     renderBody = () => {
         const { url, customer } = this.getLocation()
         if (url === 'edit') {
             return <CustomerEdit customers={customer} location='edit' />
+        } else if (url === 'delete') {
+            return <CustomersData customers={customer} isDeleteAllow={true} onDelete={this.onDelete} />
         } else {
             return <CustomersData customers={customer} />
         }

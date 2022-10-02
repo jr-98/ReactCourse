@@ -12,9 +12,14 @@ const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCusto
     const rgxTxt = new RegExp(/^[a-zA-Z]/, 'i')
     const { name, dni, age } = customers && customers;
     const [stateForm, setStateForm] = useState({ name: name, dni: dni, age: age, nameError: false, dniError: false, ageError: false })
-
+    const [validForm, setValidFrom] = useState(true)
     function handleChange(evt) {
         const { value, name } = evt.target
+        if (name && name.length > 0 && dni && dni.length > 0 && age && age > 0) {
+            setValidFrom(false)
+        } else {
+            setValidFrom(true)
+        }
         // value.preventDefault()
         /*
           Este snippet:
@@ -36,10 +41,11 @@ const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCusto
         setStateForm((stateForm) => ({ ...stateForm, nameError: hasError }));
     }
     function handleBlurNum({ value, stateName }) {
-        const hasError = isNaN(Number(value))
+        const hasError = isNaN(value)
+        console.log(hasError)
         const newValues = {
             ...stateForm,
-            [`${stateName}Error`]: hasError,
+            [`${stateName}Error`]: !hasError,
         };
         setStateForm(newValues);
     }
@@ -98,6 +104,7 @@ const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCusto
                         /* onBlur para sincronizar la validación del campo */
                         aria-errormessage="nameCustomerError"
                         aria-invalid={stateForm.nameError}
+                        autoFocus
                     />
                     <ErrorComponent error={stateForm.nameError} msj='Ingrese solo valores alfanuméricos' />
                 </div>
@@ -123,7 +130,7 @@ const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCusto
                         min={0}
                         value={stateForm.age ? stateForm.age : age}
                         onChange={handleChange}
-                        onBlur={() => handleBlurNum({ value: stateForm.age, stateName: "age" })}
+                        onBlur={() => handleBlurNum({ value: parseInt(stateForm.age), stateName: "age" })}
                         aria-errormessage={stateForm.ageError}
                     />
                     <ErrorComponent value={stateForm.age} error={stateForm.ageError} msj='Ingrese solo valores numéricos' />
@@ -131,7 +138,7 @@ const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCusto
                 <div className='container-button'>
                     <div className='submit-from'>
                         <button
-                            disabled={(!stateForm.nameError && !stateForm.dniError && !stateForm.ageError) || !submitting ? false : true}
+                            disabled={(!stateForm.nameError && !stateForm.dniError && !stateForm.ageError) || !submitting || !validForm ? false : true}
                             type='submit'>
                             Continuar
                         </button>
