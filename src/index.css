@@ -20,6 +20,26 @@ code {
   background-repeat: unset;
   background-position: center;
 }
+.app-frame form {
+  width: 100%;
+  background: rgba(255,255,255,0.5);
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.app-frame form label {
+  width: 100%;
+  display: inline-block;
+  margin-top: 10px;
+  color: rgba(0,0,0,0.7);
+  font-size: 12px;
+}
+
+.app-frame form input {
+  font-size: 18px;
+  font-style: bolder;
+}
+
 .customer-actions{
   background: #AAA;
   padding: 10px;
@@ -58,12 +78,36 @@ code {
   margin: auto;
   display: flex;
 }
-.customers-list-item .fields{
+.app-header h1 {
+  color:rgb(1, 173, 229) ;
+}
+
+.app-frame h2 {
+  font-weight: lighter;
+  font-size: 1.3em;
+}
+
+.customers-list-item .field{
   width: calc(300px);
   margin: 1px;
   padding: 5px;
   display: inline-block;
   background: #dcdcdc;
+}
+.customers-list-item .field > a{
+  color: #222;
+  text-decoration: none;
+  font-weight:bolder;
+}
+.customers-list .customers-list-item:nth-child(even){
+  background: #EEE;
+}
+.customer-data strong {
+  width: 100%;
+  display: inline-block;
+  margin-top: 10px;
+  color: #333;
+  font-size: 11px;
 }
 .footer-text{
   text-align: center;
@@ -71,9 +115,126 @@ code {
   font-style: italic;
   font-weight: bolder;
   font-size: 1rem;
+  position: absolute;
 }
 .customer-form{
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
 }
+.button.type3{color:#435a6b;
+position: relative;
+width:277px;
+height:50px;
+/* line-height: 60px; */
+text-align: center;
+cursor: pointer;
+font-weight:600;
+font-size:17px;
+z-index: 1;
+}
+.button.type3.type3::after,.button.type3.type3::before{
+  content:"";
+  display:block;
+  position:absolute;
+  width:20%;
+  height:20%;
+  z-index: 1;
+  border:2px solid;transition:all .6s ease;border-radius:2px
+}
+.button.type3.type3::after{
+  bottom:0;
+  z-index: 1;
+  right:0;
+  border-color:transparent #435a6b #435a6b transparent
+}
+.button.type3.type3::before{
+  top:0;
+  z-index: 1;
+  left:0;
+  border-color:#435a6b transparent transparent #435a6b
+}
+.button.type3.type3:hover:after,.button.type3.type3:hover:before{
+  border-color:#435a6b;
+  z-index: 1;
+  width:277px;
+height:50px;
+z-index: 1;
+}
+.submit-from{
+  height: 100%;
+  padding-top: 2em;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  position: relative;
+  display: flex;
+}
+.submit-from button{
+  border-radius: 45px;
+  border: none;
+  width: 85%;
+  height: 35px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  background-color: rgba(245, 134, 52, 0.807);
+  box-shadow: 0px 8px 15px rgba(245, 134, 52, 0.4);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+.submit-from button:hover{
+ background-color: rgb(1, 173, 229);
+ box-shadow: 0px 15px 20px rgba(73, 118, 138,0.3);
+ width: 90%;
+ color: #fff;
+ transform: translateY(-7px);
+}
+.submit-from button:disabled{
+  border-radius: 40px;
+  border: none;
+  height: 35px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 300;
+  background-color: rgb(73, 118, 138);
+  box-shadow: 0px 8px 15px rgba(74, 85, 88, 0.779);
+  cursor: pointer;
+}
+
+.back-button{
+  height: 100%;
+  width: 30%;
+  padding-top: 2em;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  display: flex;
+}
+.back-button button{
+  border-radius: 45px;
+  border: none;
+  width: 85%;
+  height: 35px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  background-color: rgb(1, 173, 229);
+  box-shadow: 0px 15px 20px rgba(73, 118, 138,0.3);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+.back-button button:hover{
+  background-color: rgba(245, 134, 52, 0.807);
+  box-shadow: 0px 8px 15px rgba(245, 134, 52, 0.4);
+  color: #fff;
+   width: 90%;
+  transform: translateY(-7px);
+}
+.container-button{
+  display:flex ;
+  justify-content: center;
+}
+

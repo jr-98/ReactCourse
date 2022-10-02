@@ -1,5 +1,10 @@
 import { handleActions } from 'redux-actions';
-import { FETCH_CUSTOMERS, INSERT_CUSTOMER, UPDATE_CUSTOMERS } from '../constants';
+import {
+    DELETE_CUSTOMER,
+    FETCH_CUSTOMERS,
+    INSERT_CUSTOMER,
+    UPDATE_CUSTOMERS,
+} from '../constants';
 //handleActions([ocj,inivtail value])
 export const customers = handleActions({
     [FETCH_CUSTOMERS]: (state, actions) => [...actions.payload],
@@ -25,5 +30,6 @@ export const customers = handleActions({
         //[{id:1,dni:,nombre:,age:}]
         // [{ id: 2, dni: 'newDni', nombre: 'newName': newAge }]
         return newCustomers
-    }
+    },
+    [DELETE_CUSTOMER]: (state, action) => state.filter(c => c.id !== action.payload)
 }, [])

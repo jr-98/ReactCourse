@@ -5,7 +5,7 @@ import CustomerListItem from '../CustomerListItem'
 const CustomerList = ({ customers, urlPath }) => {
     return (
         <div>
-            <div className="customerts-list">
+            <div className="customers-list">
                 {
                     customers && customers.map(c =>
                         <CustomerListItem

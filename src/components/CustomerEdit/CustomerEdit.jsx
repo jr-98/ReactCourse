@@ -115,7 +115,7 @@ const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCusto
                         name='dni'
                         type="text"
                         value={stateForm.dni ? stateForm.dni : dni}
-                        onBlur={() => handleBlurNum({ value: stateForm.dni, stateName: "dni" })}
+                        onBlur={handleBlurTxt}
                         onChange={handleChange}
                         aria-errormessage={stateForm.dniError}
                     />
@@ -133,7 +133,10 @@ const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCusto
                         onBlur={() => handleBlurNum({ value: parseInt(stateForm.age), stateName: "age" })}
                         aria-errormessage={stateForm.ageError}
                     />
-                    <ErrorComponent value={stateForm.age} error={stateForm.ageError} msj='Ingrese solo valores numéricos' />
+                    {
+                        !stateForm.ageError &&
+                        <ErrorComponent value={stateForm.age} error={stateForm.ageError} msj='Ingrese solo valores numéricos' />
+                    }
                 </div>
                 <div className='container-button'>
                     <div className='submit-from'>

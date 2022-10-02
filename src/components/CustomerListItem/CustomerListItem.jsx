@@ -6,13 +6,13 @@ const CustomerListItem = ({ name, urlPath, dni, editAction, delAction }) => {
     return (
         <div>
             <div className="customers-list-item">
-                <div className="fields">
+                <div className="field">
                     <Link to={`${urlPath}${dni}`}>{name}</Link>
                 </div>
-                <div className="fields">
+                <div className="field">
                     <Link to={`${urlPath}${dni}/edit`}>{editAction}</Link>
                 </div>
-                <div className="fields">
+                <div className="field">
                     <Link to={`${urlPath}${dni}/delete`}>{delAction}</Link>
                 </div>
             </div>

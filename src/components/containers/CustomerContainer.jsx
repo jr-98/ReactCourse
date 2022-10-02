@@ -18,6 +18,7 @@ class CustomerContainer extends Component {
     }
     onDelete = id => {
         this.props.deleteCustomer(id);
+        alert('Cliente eliminado correctamente')
     }
 
     renderBody = () => {
