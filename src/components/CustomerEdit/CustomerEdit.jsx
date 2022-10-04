@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router'
 import { fetchCustomer } from '../../actions/fetchCustomer'
 import { updateCustomer } from '../../actions/updateCustomers'
 import { insertCustomer } from '../../actions/insertCustomer'
+import { accessControl } from 'helpers/accessControl'
+import { CUSTOMER_EDIT } from 'constants/permissions'
 
 const CustomerEdit = ({ customers = [{ name: '', dni: '', age: '' }], fetchCustomer, updateCustomer, insertCustomer, submitting, location }) => {
     fetchCustomer()
@@ -167,8 +169,10 @@ CustomerEdit.propTypes = {
 }
 const CustomerEditForm = reduxForm({ form: 'CustomerEdit', enableReinitialize: true })(CustomerEdit);
 
-export default connect(null, {
-    fetchCustomer,
-    updateCustomer,
-    insertCustomer,
-})(CustomerEditForm);
+export default accessControl([CUSTOMER_EDIT])(
+    connect(null, {
+        fetchCustomer,
+        updateCustomer,
+        insertCustomer,
+    })(CustomerEditForm)
+);

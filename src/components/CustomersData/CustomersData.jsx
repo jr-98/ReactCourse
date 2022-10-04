@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
+import { accessControl } from 'helpers/accessControl';
+import { CUSTOMER_VIEW } from 'constants/permissions';
 
 const CustomersData = ({ customers = [{ name: '', dni: '', age: '' }], isDeleteAllow, onDelete }) => {
 
@@ -42,4 +44,4 @@ CustomersData.propTypes = {
     onDelete: PropTypes.func
 }
 
-export default CustomersData
+export default accessControl([CUSTOMER_VIEW])(CustomersData) 
