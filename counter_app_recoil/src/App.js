@@ -3,7 +3,8 @@ import {
   RecoilRoot,
   useRecoilState,
   atom,
-  selector
+  selector,
+  useRecoilValue
 } from 'recoil';
 
 
@@ -11,6 +12,7 @@ function App() {
   return (
     <RecoilRoot>
       <TextInput />
+      <Counter />
     </RecoilRoot>
   );
 }
@@ -20,7 +22,13 @@ const textInputState = atom({
   key: 'textInputState',
   default: ''
 })
-
+const textInputSelector = selector({
+  key: 'textInputSelector',
+  get: ({ get }) => {
+    const text = get(textInputState)
+    return text.length
+  }
+})
 //Funciones
 function TextInput() {
   const [text, setText] = useRecoilState(textInputState)
@@ -35,9 +43,11 @@ function TextInput() {
 }
 
 function Counter() {
+  const text = useRecoilValue(textInputSelector)
+  // var length = text.length
   return (
     <span>
-
+      {text}
     </span>
   )
 }
