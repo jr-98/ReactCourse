@@ -58,9 +58,9 @@ function TodoList() {
     </div>
   )
 }
+
 function changeItem(id, toDoList, changedItem) {
   const index = toDoList.findIndex(item => item.id === id)
-
   return [...toDoList.slice(0, index), changedItem, ...toDoList.slice(index + 1, toDoList.lenght)]
 }
 
@@ -75,11 +75,27 @@ function TodoItem({ id, text, isComplete }) {
     }
     setChangeToDoList(changeItem(id, changeToDoList, changedItem))
   }
+  const onToggleComplete = () => {
+    const changedItem = {
+      id,
+      text,
+      isComplete: !isComplete
+    }
+    setChangeToDoList(changeItem(id, changeToDoList, changedItem))
+  }
+
+  function deleteItem(id, toDoList) {
+    const index = toDoList.findIndex(item => item.id === id)
+    return [...toDoList.slice(0, index), ...toDoList.slice(index + 1, toDoList.lenght)]
+  }
+  function onClickDelete() {
+    setChangeToDoList(deleteItem(id, changeToDoList))
+  }
   return (
     <div>
       <input value={text} onChange={onChangeTodoItem} />
-      <input type='checkbox' checked={isComplete} />
-      <button>x</button>
+      <input type='checkbox' checked={isComplete} onChange={onToggleComplete} />
+      <button onClick={onClickDelete}>x</button>
     </div>
   )
 }
