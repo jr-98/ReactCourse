@@ -1,4 +1,5 @@
 import './App.css';
+import React, { Suspense } from 'react';
 import {
   RecoilRoot,
   atom,
@@ -8,15 +9,19 @@ import {
   selector,
 } from 'recoil';
 import { useState } from 'react';
+import axios from 'axios';
 //Funcion render
 
 function App() {
   return (
     <RecoilRoot>
-      <ToDoListFilter />
-      <TodoStats />
-      <ItemCreator />
-      <TodoList />
+      <Suspense fallback={<h1>Cargando</h1>}>
+        <UserData />
+        <ToDoListFilter />
+        <TodoStats />
+        <ItemCreator />
+        <TodoList />
+      </Suspense>
     </RecoilRoot>
   );
 }
@@ -29,6 +34,7 @@ const todoFilterState = atom({
   key: 'todoFilterState',
   default: "all"
 })
+//Selectors
 const todoFilterSelector = selector({
   key: 'todoFilterSelector',
   get: ({ get }) => {
@@ -64,7 +70,13 @@ const todoStatsSelector = selector({
 
 
 })
-
+const userDataSelector = selector({
+  key: 'userDataSelector',
+  get: async () => {
+    const response = await axios.get('http://localhost:3001/users/1')
+    return response.data
+  }
+})
 // variables
 let idEdit = 0
 
@@ -173,6 +185,12 @@ function TodoStats() {
       <span>Tareas completas:{toDo}</span><br />
       <span>Eficiencia:{completePercetaje}%</span>
     </div>
+  )
+}
+function UserData() {
+  const user = useRecoilValue(userDataSelector)
+  return (
+    <h1>{user.name}</h1>
   )
 }
 export default App;
