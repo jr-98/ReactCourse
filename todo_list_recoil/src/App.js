@@ -13,9 +13,10 @@ import { useState } from 'react';
 function App() {
   return (
     <RecoilRoot>
+      <ToDoListFilter />
+      <TodoStats />
       <ItemCreator />
       <TodoList />
-      <ToDoListFilter />
     </RecoilRoot>
   );
 }
@@ -42,6 +43,26 @@ const todoFilterSelector = selector({
         return list
     }
   }
+})
+const todoStatsSelector = selector({
+  key: 'todoStatsSelector',
+  get: ({ get }) => {
+    const list = get(todoListState)
+    const total = list.length
+    const toDo = list.filter(item => item.isComplete).length
+    const notToDo = list.filter(item => !item.isComplete).length
+    const completePercetaje = total === 0 ? 0 : (toDo / total) * 100
+    const data = {
+      total,
+      toDo,
+      notToDo,
+      completePercetaje
+    }
+    return data
+  }
+
+
+
 })
 
 // variables
@@ -142,5 +163,16 @@ function ToDoListFilter() {
       <option value="notDone">Incompletos</option>
     </select>
   </div>
+}
+function TodoStats() {
+  const { total, toDo, notToDo, completePercetaje } = useRecoilValue(todoStatsSelector)
+  return (
+    <div>
+      <span>Tareas totales:{total}</span><br />
+      <span>Tareas pendientes:{notToDo}</span><br />
+      <span>Tareas completas:{toDo}</span><br />
+      <span>Eficiencia:{completePercetaje}%</span>
+    </div>
+  )
 }
 export default App;
