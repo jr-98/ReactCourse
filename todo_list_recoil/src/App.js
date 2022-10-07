@@ -1,7 +1,9 @@
 import './App.css';
 import {
   RecoilRoot,
-
+  atom,
+  useRecoilState,
+  useRecoilValue
 } from 'recoil';
 import { useState } from 'react';
 //Funcion render
@@ -14,25 +16,36 @@ function App() {
   );
 }
 //cosntates
-const todos = [
-  { text: 'To do 1', isComplete: false },
-  { text: 'To do 2', isComplete: true },
-  { text: 'To do 3', isComplete: false },
-]
+let id = 0
+const TodoListState = atom({
+  key: 'todoListState',
+  default: []
+})
 //funciones
 function ItemCreator() {
   const [text, setText] = useState()
+  const [newToDo, setNewToDo] = useRecoilState(TodoListState)
   const onChangeText = value => {
     setText(value.target.value)
+  }
+  const onClickNewItem = () => {
+    setNewToDo(
+      [...newToDo,
+      {
+        id: id++, text, isComplete: false
+      }]
+    )
+    setText('')
   }
   return (
     <div>
       <input value={text} onChange={onChangeText} />
-
+      <button onClick={onClickNewItem}>Agregar</button>
     </div>
   )
 }
 function TodoList() {
+  const todos = useRecoilValue(TodoListState)
   return (
     <div>
       {
