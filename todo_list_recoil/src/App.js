@@ -3,7 +3,8 @@ import {
   RecoilRoot,
   atom,
   useRecoilState,
-  useRecoilValue
+  useRecoilValue,
+  useSetRecoilState //Modifica el estado
 } from 'recoil';
 import { useState } from 'react';
 //Funcion render
@@ -24,16 +25,19 @@ const TodoListState = atom({
 //funciones
 function ItemCreator() {
   const [text, setText] = useState()
-  const [newToDo, setNewToDo] = useRecoilState(TodoListState)
+  // const [newToDo, setNewToDo] = useRecoilState(TodoListState)
+  const setNewToDo = useSetRecoilState(TodoListState)
   const onChangeText = value => {
     setText(value.target.value)
   }
   const onClickNewItem = () => {
-    setNewToDo(
-      [...newToDo,
+    setNewToDo(oldToDoList => {
+      return [...oldToDoList,
       {
         id: id++, text, isComplete: false
-      }]
+      }
+      ]
+    }
     )
     setText('')
   }
