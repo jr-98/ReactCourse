@@ -17,7 +17,7 @@ function App() {
   );
 }
 //cosntates
-let id = 0
+let idEdit = 0
 const TodoListState = atom({
   key: 'todoListState',
   default: []
@@ -34,7 +34,7 @@ function ItemCreator() {
     setNewToDo(oldToDoList => {
       return [...oldToDoList,
       {
-        id: id++, text, isComplete: false
+        id: idEdit++, text, isComplete: false
       }
       ]
     }
@@ -58,9 +58,22 @@ function TodoList() {
     </div>
   )
 }
-function TodoItem({ text, isComplete }) {
-  const onChangeTodoItem = e => {
+function changeItem(id, toDoList, changedItem) {
+  const index = toDoList.findIndex(item => item.id === id)
 
+  return [...toDoList.slice(0, index), changedItem, ...toDoList.slice(index + 1, toDoList.lenght)]
+}
+
+function TodoItem({ id, text, isComplete }) {
+  const [changeToDoList, setChangeToDoList] = useRecoilState(TodoListState)
+  const onChangeTodoItem = event => {
+    const textValue = event.target.value
+    const changedItem = {
+      id,
+      text: textValue,
+      isComplete
+    }
+    setChangeToDoList(changeItem(id, changeToDoList, changedItem))
   }
   return (
     <div>
